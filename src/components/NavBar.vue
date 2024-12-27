@@ -53,7 +53,7 @@ const { circleUrl } = toRefs(state)
         <el-avatar :size="40" :src="circleUrl" />
 
         <!-- 登录 -->
-        <el-button class="login">登录</el-button>
+        <el-button class="login" ><el-icon><Position /></el-icon>&nbsp;&nbsp;登录</el-button>
 
       </div>
     </div>
@@ -65,7 +65,7 @@ const { circleUrl } = toRefs(state)
   height: 70px;
   background-color: #f7d049;
   font-size: 12px;
-  color: #b7bdc4;
+  color: #000;
   line-height: 70px;
   
   .center {
@@ -79,8 +79,7 @@ const { circleUrl } = toRefs(state)
     }
     .nav {
       display: flex;
-      font-size: 18px;
-      color: #000;
+      font-size: 16px;
       li {
         padding: 0 10px;
         a.router-link-active {
@@ -93,9 +92,8 @@ const { circleUrl } = toRefs(state)
       display: flex;
       
         .el-input {
-          --el-input-placeholder-color: #ccc;
+          --el-input-placeholder-color: #757575;
           --el-input-text-color: #000;
-          // --el-input-hover-border-color: #708db1;
           --el-input-focus-border-color: #c6d5e7;
         }
         .el-avatar {
@@ -104,6 +102,12 @@ const { circleUrl } = toRefs(state)
         }
         .login {
           margin: auto 0;
+          border-color: #fff;
+          background-color: transparent;
+
+          &:hover {
+            color: #fff;
+          }
         }
     }
     

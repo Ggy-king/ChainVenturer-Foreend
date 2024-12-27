@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 
-
 import NavBar from '@/components/NavBar.vue'
 import TipBar from '@/components/TipBar.vue'
 
@@ -9,6 +8,7 @@ import TipBar from '@/components/TipBar.vue'
 defineOptions({
     name: 'HomeView'
 })
+
 
 </script>
 
@@ -34,8 +34,10 @@ defineOptions({
 
 
 <style scoped lang="scss">
+
 .common-layout {
   .el-container {
+    // background-color: pink;
     .el-header {
       padding: 0;
       }

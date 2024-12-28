@@ -13,10 +13,17 @@ defineOptions({
 })
 
 
+// const index: number[] = [0,1,2,3,4,5]
+const index = ref(0)
+
+
 const activeName = ref('first')
 
 const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event)
+  console.log(tab.index);
+  
+  index.value = Number(tab.index)
 }
 
 
@@ -28,7 +35,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 
   <!-- 轮播图 -->
   <div class="block text-center">
-    <el-carousel height="400px" motion-blur="true">
+    <el-carousel height="400px" :motion-blur="true">
       <el-carousel-item v-for="item in 4" :key="item">
         <h3 class="small justify-center" text="2xl">{{ item }}</h3>
       </el-carousel-item>
@@ -38,14 +45,29 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   <div class="main-show">
        <!-- 标签页 主体内容 -->
     <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
-      <el-tab-pane label="最新" name="first">
-        <LabelBrowse></LabelBrowse>
+      <el-tab-pane label="最新" name="first" >
+        <LabelBrowse :listIndex='index'></LabelBrowse>
       </el-tab-pane>
-      <el-tab-pane label="Web3" name="second">Web3</el-tab-pane>
-      <el-tab-pane label="政事" name="third">政事</el-tab-pane>
-      <el-tab-pane label="精彩再现" name="fourth">精彩再现</el-tab-pane>
-      <el-tab-pane label="BTC" name="fifth">BTC</el-tab-pane>
-      <el-tab-pane label="科技" name="sixth">科技</el-tab-pane>
+
+      <el-tab-pane label="Web3" name="second" :lazy="true">
+        <LabelBrowse :listIndex='index'></LabelBrowse>
+      </el-tab-pane>
+
+      <el-tab-pane label="政事" name="third" :lazy="true">
+        <LabelBrowse :listIndex='index'></LabelBrowse>
+      </el-tab-pane>
+
+      <el-tab-pane label="精彩再现" name="fourth" :lazy="true">
+        <LabelBrowse :listIndex='index'></LabelBrowse>
+      </el-tab-pane>
+
+      <el-tab-pane label="BTC" name="fifth" :lazy="true">
+        <LabelBrowse :listIndex='index'></LabelBrowse>
+      </el-tab-pane>
+
+      <el-tab-pane label="科技" name="sixth" :lazy="true">
+        <LabelBrowse :listIndex='index'></LabelBrowse>
+      </el-tab-pane>
     </el-tabs>
 
     <!-- 侧边栏展示 -->
@@ -84,9 +106,29 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   }
 
   .el-carousel__item {
-    background-image: url('@/assets/images/total-rotate-app.webp');
     background-repeat: no-repeat;
+
+  }
+  .el-carousel__item:nth-child(1) {
+    background-image: url('@/assets/images/total-rotate-app.webp');
     background-size: 100% 100%;
+
+  }
+  .el-carousel__item:nth-child(2) {
+    background-image: url('@/assets/images/total-rotate-2.jpg');
+    background-size: 100% 100%;
+
+  }
+  .el-carousel__item:nth-child(3) {
+    background-image: url('@/assets/images/total-rotate-3.jpg');
+    background-size: cover;
+    background-position: 50%;
+
+  }
+  .el-carousel__item:nth-child(4) {
+    background-image: url('@/assets/images/total-rotate-4.jpg');
+    background-size: cover;
+    background-position: 50%;
 
   }
   

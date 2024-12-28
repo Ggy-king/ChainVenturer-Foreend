@@ -8,6 +8,8 @@ const state = reactive({
     'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
 })
 
+
+
 const input = ref('')
 const { circleUrl } = toRefs(state)
 
@@ -27,7 +29,7 @@ const { circleUrl } = toRefs(state)
         <li><router-link :to="{ name:'market' }">行情</router-link></li>
         <li><router-link :to="{ name:'topic' }">专题</router-link></li>
         <li><router-link :to="{ name:'news' }">快讯</router-link></li>
-        <li><router-link :to="{ name:'rates' , params: { username: 'ggy' }}">汇率</router-link></li>
+        <li><router-link :to="{ name:'rates'}">汇率</router-link></li>
         <li><router-link :to="{ name:'data' }">数据</router-link></li>
         <li><router-link :to="{ name:'articles' }">文章</router-link></li>
         <li><router-link :to="{ name:'answer' }">问答</router-link></li>
@@ -62,6 +64,7 @@ const { circleUrl } = toRefs(state)
 
 <style scoped lang="scss">
 .con_nav {
+ 
   height: 70px;
   background-color: #f7d049;
   font-size: 12px;

@@ -1,101 +1,95 @@
 <!-- 简洁浏览   -->
 
 <script setup lang="ts">
+const list =[
+    {
+        id: 1,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 2,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 3,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 4,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 5,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 6,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 7,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 8,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 9,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
+    {
+        id: 10,
+        img:'src/assets/images/btc-icon.webp',
+        name:'BTC',
+        price:'$95942.00',
+        increase:'1.93%'
+    },
 
+    
+
+]
 </script>
 
 <template>
     <div class="browsing">
       <ul class="browsing-roll roll-anima">
-        <li><a href="">
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
+            <li v-for="i in list" :key="i.id">
+                <a href="">
+                    <img :src="i.img" alt="">
+                    <span>&nbsp;{{i.name}}&nbsp;</span>
+                    <span>{{ i.price }}&nbsp;</span>
+                    <span>{{ i.price }}&nbsp;</span>
                     <el-icon><Bottom /></el-icon>
                 </a>
             </li>
-            <li><a href="">
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            <li><a href="">
-                    <!-- <span class="img"></span> -->
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            <li><a href="">
-                    <!-- <span class="img"></span> -->
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            <li><a href="">
-                    <!-- <span class="img"></span> -->
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            <li><a href="">
-                    <!-- <span class="img"></span> -->
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            <li><a href="">
-                    <!-- <span class="img"></span> -->
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            <li><a href="">
-                    <!-- <span class="img"></span> -->
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            <li><a href="">
-                    <!-- <span class="img"></span> -->
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            <li><a href="">
-                    <!-- <span class="img"></span> -->
-                    <img src="../assets/images/btc-icon.webp" alt="">
-                    <span> BTC </span>
-                    <span>$95942.00 </span>
-                    <span>1.93% </span>
-                    <el-icon><Bottom /></el-icon>
-                </a>
-            </li>
-            
       </ul>
     </div>
 </template>

@@ -11,6 +11,7 @@
 
 <style scoped lang="scss">
 .special_tip {
+  
   height: 30px;
   background-color: #24292e;
   font-size: 12px;

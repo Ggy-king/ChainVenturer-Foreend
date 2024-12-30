@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import SimpleBrowse from '@/components/SimpleBrowse.vue';
+import PersonalizedStatement from '@/views/market/PersonalizedStatement.vue';
+import ChartOverview from '@/views/market/ChartOverview.vue';
+import DetailView from '@/views/market/DetailView.vue';
+
+
 defineOptions({
     name: 'MarketView'
 })
@@ -7,7 +13,17 @@ defineOptions({
 </script>
 
 <template>
-  行情
+  <!-- 简洁浏览 -->
+  <SimpleBrowse></SimpleBrowse>
+
+  <!-- 个性语句 -->
+  <PersonalizedStatement></PersonalizedStatement>
+
+  <!-- 图表总览 -->
+  <ChartOverview></ChartOverview>
+
+  <!-- 详细列表 -->
+  <DetailView></DetailView>
 </template>
 
 <style scoped lang="scss">

@@ -42,9 +42,9 @@ onUnmounted(() => {
 <template>
     <div class="common-layout">
       <el-container>
-        <el-header height="100px" :class=" { fixed: isFixed }" ref="navbarRef">
+        <el-header height="100px"  ref="navbarRef">
           <TipBar></TipBar>
-          <NavBar></NavBar>
+          <NavBar :class=" { fixed: isFixed }"></NavBar>
         </el-header>
 
         <el-main >
@@ -74,11 +74,18 @@ onUnmounted(() => {
       }
       .fixed {
         position: fixed;
-        top: -30px;
+        top: 0;
         left: 0;
         right: 0;
-        box-shadow:0 2px 10px rgba(0,0,0,0.1);
+        height: 50px;
+        line-height: 50px;
+        background-color: rgba(247, 208, 73,.9);
+        box-shadow:0 4px 10px rgba(0,0,0,0.3);
+        transition: all .8s ease;
+        
       }
+
+      
     .el-main {
       width: 1200px;
       margin: 100px auto 0;

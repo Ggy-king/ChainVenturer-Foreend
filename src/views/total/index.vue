@@ -5,23 +5,47 @@ import NavigatorCart from '@/views/total/NavigatorCart.vue'
 import NewsCart from '@/views/total/NewsCart.vue'
 
 import { ref } from 'vue'
+
 import type { TabsPaneContext } from 'element-plus'
+import type { Ref } from 'vue'
+
+import {getTabsDate,postTabsDate} from '@/api/total.js'
 
 
 defineOptions({
     name: 'TotalView'
 })
 
+/**
+ * tabs栏切换
+ * - 获取数据
+ * - 实现切换
+ */
 
-// const index: number[] = [0,1,2,3,4,5]
-const index = ref(0)
+interface List {
+  list: string
+}
 
+const getTabsList:() => Promise<List> = async() => {
+  const res = await getTabsDate()
+  console.log(res.data);
+  return res.data
+}
+
+const postTabsList:() => Promise<List> = async() => {
+  
+  const res = await postTabsDate()
+  return res.data
+}
+
+
+const index: Ref<number> = ref(0)
 
 const activeName = ref('first')
-
 const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
-  console.log(tab.index);
+  getTabsList()
+  postTabsList()
+  // console.log(tab, event)
   
   index.value = Number(tab.index)
 }
@@ -143,7 +167,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   
   .el-tabs {
     width: 820px;
-    ::v-deep(.el-tabs__item) {
+    :deep(.el-tabs__item) {
       font-size: 16px;
       font-weight: 600;
       color: #4e5662;
@@ -151,14 +175,14 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
         color: #000;
       }
     }
-    ::v-deep(.el-tabs__active-bar){
+    :deep(.el-tabs__active-bar){
       background-color: #f7d049;
     }
-    ::v-deep(.is-active) {
+    :deep(.is-active) {
       color: #000;
     }
 
-    ::v-deep(.el-tabs__content) {
+    :deep(.el-tabs__content) {
       height: 2000px;
     }
 

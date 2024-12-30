@@ -70,6 +70,7 @@ const { circleUrl } = toRefs(state)
   font-size: 12px;
   color: #000;
   line-height: 70px;
+  transition: all .8s ease;
   
   .center {
     width: 1200px;

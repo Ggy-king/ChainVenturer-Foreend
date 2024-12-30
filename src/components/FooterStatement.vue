@@ -106,7 +106,7 @@ import IconFunny from'./icons/IconFunny.vue'
           div {
             .el-icon {
               font-size: 18px;
-              color:red;
+              color:#f4ea2a;
               vertical-align: middle;
 
             }

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import SimpleBrowse from '@/components/SimpleBrowse.vue';
+import PersonalizedStatement from '@/components/PersonalizedStatement.vue';
+import NewsList from '@/views/news/NewsList.vue';
+
 defineOptions({
     name: 'NewsView'
 })
@@ -7,7 +11,16 @@ defineOptions({
 </script>
 
 <template>
-  快讯
+  <!-- 简洁预览 -->
+  <SimpleBrowse></SimpleBrowse>
+
+  <!-- 个性语句 -->
+  <PersonalizedStatement></PersonalizedStatement>
+
+  <!-- 快讯列表 -->
+  <NewsList></NewsList>
+
+
 </template>
 
 <style scoped lang="scss">

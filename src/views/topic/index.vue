@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import SimpleBrowse from '@/components/SimpleBrowse.vue';
+import TopicHeader from '@/views/topic/TopicHeader.vue';
+import TopicChunk from '@/views/topic/TopicChunk.vue';
+
+
 defineOptions({
     name: 'TopicView'
 })
@@ -7,7 +12,16 @@ defineOptions({
 </script>
 
 <template>
-  专题
+  <!-- 简洁预览 -->
+  <SimpleBrowse></SimpleBrowse>
+
+  <!-- 专题头部 -->
+  <TopicHeader></TopicHeader>
+
+  <!-- 专题主体 -->
+  <TopicChunk></TopicChunk>
+  
+  
 </template>
 
 <style scoped lang="scss">

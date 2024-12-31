@@ -48,3 +48,14 @@ body {
     /* 3 文本超出用省略号代替 */
     text-overflow: ellipsis;
 }
+
+.ellipsis3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* 弹性伸缩盒模型 */
+    display: -webkit-box;
+    /* 限制在一个块元素的文本行数 */
+    -webkit-line-clamp: 3;
+    /* 设置或检索伸缩盒对象的子元素的排列方式 */
+    -webkit-box-orient: vertical;
+}

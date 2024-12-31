@@ -49,6 +49,8 @@ onUnmounted(() => {
 
         <el-main >
           <router-view></router-view>
+          <el-backtop :right="60" :bottom="100" style="color: #f7d049;background-color: #24292e;"/>
+
         </el-main>
 
         <el-footer>

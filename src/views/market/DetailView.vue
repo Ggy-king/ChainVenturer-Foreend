@@ -146,7 +146,7 @@ const tableCellStyle = (data: { row: any, column: any, rowIndex: number, columnI
     }
     // #037efb
     // #00cae0
-      :deep(.el-table__body tr) {
+    :deep(.el-table__body tr) {
         background-color: #ebf0eb;
     }
     :deep(.el-table__body td) {

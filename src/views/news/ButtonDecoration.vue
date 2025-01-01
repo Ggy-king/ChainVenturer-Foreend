@@ -1,78 +1,97 @@
 <script setup lang="ts">
 
+const emit = defineEmits(['changeBtn'])  // 接受父组件中定义的时间
+const handleClickBtn = (num:number) => {
+  emit('changeBtn',num)
+}
 
 </script>
 
 <template>
-  <div class="social-btns">
-    <a class="btn facebook" href="#"><strong class="fa">最新</strong></a>
-    <a class="btn google" href="#"><strong class="fa">最热</strong></a>
-    <a class="btn twitter" href="#"><strong class="fa">精选</strong></a>
-    <a class="btn instagram" href="#"><strong class="fa">小众</strong></a>
+
+  <!-- 大按钮 -->
+  <div class="social-btn">
+    <a class="btn bu-one" href="#"><strong class="fa" @click="handleClickBtn(1)">最新</strong></a>
+    <a class="btn bu-two" href="#"><strong class="fa" @click="handleClickBtn(2)">最热</strong></a>
+    <a class="btn bu-three" href="#"><strong class="fa" @click="handleClickBtn(3)">精选</strong></a>
+    <a class="btn bu-four" href="#"><strong class="fa" @click="handleClickBtn(4)">小众</strong></a>
   </div>
 
 </template>
 
 <style scoped lang="scss">
 
-.social-btns .btn,
-.social-btns .btn:before,
-.social-btns .btn .fa {
+.social-btn .btn,
+ .btn:before,
+ .btn .fa {
   transition: all 0.35s;
   transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
 }
-.social-btns .btn:before {
+.social-btn .btn:before {
   top: 90%;
   left: -110%;
 }
-.social-btns .btn .fa {
+.social-btn .btn .fa {
   -webkit-transform: scale(0.6);
   transform: scale(0.6);
 }
-.social-btns .btn.facebook:before {
+
+
+
+.social-btn .btn.bu-one:before {
   background-color: #3b5998;
 }
-.social-btns .btn.facebook .fa {
+.social-btn .btn.bu-one .fa {
   color: #3b5998;
 }
-.social-btns .btn.twitter:before {
+.social-btn .btn.bu-two .fa {
+  color: #dc4a38;
+}
+.social-btn .btn.bu-two:before {
+  background-color: #dc4a38;
+}
+.social-btn .btn.bu-three:before {
   background-color: #00aff0;
 }
-.social-btns .btn.twitter .fa {
+.social-btn .btn.bu-three .fa {
   color: #00aff0;
   width: 80px;
 }
-.social-btns .btn.google .fa {
-  color: #dc4a38;
-}
-.social-btns .btn.google:before {
-  background-color: #dc4a38;
-}
-.social-btns .btn.instagram:before {
+
+.social-btn .btn.bu-four:before {
   background-color: #bf00ff;
 }
-.social-btns .btn.instagram .fa {
+.social-btn .btn.bu-four .fa {
   color: #bf00ff;
 }
 
-.social-btns .btn:focus:before,
-.social-btns .btn:hover:before {
+
+
+
+
+.social-btn .btn:focus:before,
+.social-btn .btn:hover:before {
   top: -10%;
   left: -10%;
 }
-.social-btns .btn:focus .fa,
-.social-btns .btn:hover .fa {
+.social-btn .btn:focus .fa,
+.social-btn .btn:hover .fa {
     display: block;
   color: #fff;
   -webkit-transform: scale(1);
   transform: scale(1);
 }
-.social-btns {
+
+
+
+
+// 按钮
+.social-btn {
   height: 90px;
   font-size: 0;
 
 }
-.social-btns .btn {
+.social-btn .btn {
   display: inline-block;
   background-color: #fff;
   width: 90px;
@@ -86,7 +105,7 @@
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
   opacity: 0.99;
 }
-.social-btns .btn:before {
+.social-btn .btn:before {
   content: "";
   width: 120%;
   height: 120%;
@@ -94,7 +113,7 @@
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.social-btns .btn .fa {
+.social-btn .btn .fa {
   font-size: 30px;
   vertical-align: middle;
 }

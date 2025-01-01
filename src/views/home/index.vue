@@ -42,17 +42,21 @@ onUnmounted(() => {
 <template>
     <div class="common-layout">
       <el-container>
+
+        <!-- 固定头部 -->
         <el-header height="100px"  ref="navbarRef">
           <TipBar></TipBar>
           <NavBar :class=" { fixed: isFixed }"></NavBar>
         </el-header>
 
+        <!-- 主体部分 -->
         <el-main >
           <router-view></router-view>
           <el-backtop :right="60" :bottom="100" style="color: #f7d049;background-color: #24292e;"/>
 
         </el-main>
 
+        <!-- 固定底部 -->
         <el-footer>
           <FooterStatement></FooterStatement>
         </el-footer>

@@ -46,11 +46,14 @@ const activities = [
 </script>
 
 <template>
+  
   <div class="news">
     <div class="news-header">
       <div>最新资讯</div>
       <a href="#"><span>更多</span><el-icon><ArrowRight/></el-icon></a>
     </div>
+
+
     <div class="news-main">
         <el-timeline style="max-width: 600px">
             <el-timeline-item

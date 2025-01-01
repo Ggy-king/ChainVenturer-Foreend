@@ -6,9 +6,12 @@
 
 <template>
   <div class="navigator">
+
     <div class="navigator-header">
       <div>推荐去处</div>
     </div>
+
+    
     <div class="navigator-main">
         <el-card style="max-width: 480px;">
             <img src="https://www.528btc.com/web-v2/img/nav/coinmarket.png" alt="">

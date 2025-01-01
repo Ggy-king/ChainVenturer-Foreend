@@ -73,22 +73,29 @@ const hotList = [
 
 <template>
   <div class="topic">
+    <!-- 头部 -->
     <div class="topic-header">
       <div>热议专题</div>
       <a href="#"><span>更多</span><el-icon><ArrowRight/></el-icon></a>
     </div>
+
+    <!-- 主体 -->
     <div class="topic-main">
+
       <table>
         <thead>
-            <th>名称</th>
-            <th>价格</th>
-            <th style="text-align: right;">一天内涨幅</th>
+            <tr>
+                <th>名称</th>
+                <th>价格</th>
+                <th style="text-align: right;">一天内涨幅</th>
+            </tr>
         </thead>
 
+        <!-- 表格主体 -->
         <tbody>
             <tr v-for="i in hotList">
                 <td>
-                    <img src="../../assets/images/news-logo-1.webp" alt="">
+                    <img src="@/assets/images/news-logo-1.webp" alt="">
                     <span>
                         <div>{{ i.name }}</div>
                         <div>{{ i.info }}</div>

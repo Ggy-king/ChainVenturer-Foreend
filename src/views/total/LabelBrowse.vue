@@ -167,11 +167,6 @@ const list = [
   margin: 0;
   list-style: none;
 }
-// .infinite-list .infinite-list-item {
-  
-
-  
-// }
 
 .infinite-list .infinite-list-item + .list-item {
   margin-top: 10px;

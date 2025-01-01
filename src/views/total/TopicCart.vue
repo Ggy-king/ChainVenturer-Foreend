@@ -6,10 +6,13 @@
 
 <template>
   <div class="topic">
+    
     <div class="topic-header">
       <div>热议专题</div>
       <a href="#"><span>更多</span><el-icon><ArrowRight/></el-icon></a>
     </div>
+
+
     <div class="topic-main">
       <img src="https://www.528btc.com/d/file/20241227/1735270197172779.jpg" alt="">
       <div class="upper-info"></div>

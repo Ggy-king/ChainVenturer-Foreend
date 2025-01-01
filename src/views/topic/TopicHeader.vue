@@ -34,7 +34,8 @@ const items = ref<Array<Item>>([
     <div class="header">
         <div class="introduce">
             <div class="head">与专题有约</div>
-            <div class="subtitle">链界探索者为您精心搜罗数字货币领域的最新动态，以及各种最新活动 - 等币圈热门话题，让您始终站在资讯前沿。</div>
+            <div class="subtitle">链界探索者为您精心搜罗数字货币领域的最新动态，以及各种最新
+                活动 - 等币圈热门话题，让您始终站在资讯前沿。</div>
         </div>
         <div class="keyword">
 

@@ -12,6 +12,7 @@ defineOptions({
 </script>
 
 <template>
+
   <!-- 简洁预览 -->
   <SimpleBrowse></SimpleBrowse>
 

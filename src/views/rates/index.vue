@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import PersonalizedStatement from '@/components/PersonalizedStatement.vue';
 import SideRates from '@/views/rates/SideRates.vue';
+import CurrencyConverter from '@/views/rates/CurrencyConverter.vue';
+import PopularRates from '@/views/rates/PopularRates.vue';
+import RecentQueries from '@/views/rates/RecentQueries.vue';
+import ForeignCurrency from '@/views/rates/ForeignCurrency.vue';
 
 
 defineOptions({
@@ -17,52 +21,18 @@ defineOptions({
   <div class="rates">
 
     <!-- 汇率换算器 -->
-    <el-card style="max-width: 480px">
-    <template #header>
-      <div class="card-header">
-        <span>Card name</span>
-      </div>
-    </template>
-    <p v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</p>
-    <template #footer>Footer content</template>
-  </el-card>
+    <CurrencyConverter></CurrencyConverter>
     <!-- 今日热门换算汇率 -->
-    <el-card style="max-width: 480px">
-      <template #header>
-        <div class="card-header">
-          <span>Card name</span>
-        </div>
-      </template>
-      <p v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</p>
-      <template #footer>Footer content</template>
-    </el-card>
-
+    <PopularRates></PopularRates>
     <!-- 最近查询 -->
-    <el-card style="max-width: 480px">
-      <template #header>
-        <div class="card-header">
-          <span>Card name</span>
-        </div>
-      </template>
-      <p v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</p>
-      <template #footer>Footer content</template>
-    </el-card>
+    <RecentQueries></RecentQueries>
 
     <!-- 外汇币种 -->
-    <el-card style="max-width: 480px">
-      <template #header>
-        <div class="card-header">
-          <span>Card name</span>
-        </div>
-      </template>
-      <p v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</p>
-      <template #footer>Footer content</template>
-    </el-card>
+    <ForeignCurrency></ForeignCurrency>
       
     
     <!-- 侧边栏 -->
     <div class="side">
-      <SideRates></SideRates>
       <SideRates></SideRates>
     </div>
   </div>
@@ -72,7 +42,6 @@ defineOptions({
 .rates {
   position: relative;
   width: 820px;
-  height: 2000px;
   .side {
         position: absolute;
         top: 0;

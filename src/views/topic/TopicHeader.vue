@@ -78,6 +78,7 @@ const items = ref<Array<Item>>([
             }
         }
         .keyword {
+            margin-top: 10px;
             height: 80px;
 
             .el-tag {

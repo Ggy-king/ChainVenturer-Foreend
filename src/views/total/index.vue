@@ -10,7 +10,6 @@ import CarouselView from './CarouselView.vue'
 
 import { ref} from 'vue';
 
-const viewportHeight = ref(window.innerHeight);
 
 
 </script>
@@ -23,13 +22,16 @@ const viewportHeight = ref(window.innerHeight);
   <!-- 简约浏览行情 -->
   <SimpleBrowse></SimpleBrowse>
 
-  <!-- 轮播图 -->
-  <CarouselView></CarouselView>
+  
 
 
   <div class="main-show">
-       <!-- 标签页 主体内容 -->
-       <TabMain></TabMain>
+    <div>
+      <!-- 轮播图 -->
+      <CarouselView></CarouselView>
+      <!-- 标签页 主体内容 -->
+      <TabMain></TabMain>
+    </div>
 
 
     <!-- 侧边栏展示 -->

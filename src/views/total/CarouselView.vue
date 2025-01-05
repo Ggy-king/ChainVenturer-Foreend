@@ -15,7 +15,8 @@
 
 <style scoped lang="scss">
 .el-carousel {
-  margin-bottom: 14px;
+  height: 260px;
+  margin: 14px 0;
 
   .el-carousel__arrow {  
     color: pink;

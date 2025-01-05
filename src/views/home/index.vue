@@ -41,7 +41,7 @@ onUnmounted(() => {
 
 <template>
     <div class="common-layout">
-      <el-container>
+      <el-container >
 
         <!-- 固定头部 -->
         <el-header height="100px"  ref="navbarRef">
@@ -50,7 +50,7 @@ onUnmounted(() => {
         </el-header>
 
         <!-- 主体部分 -->
-        <el-main >
+        <el-main>
           <router-view></router-view>
           <el-backtop :right="60" :bottom="100" style="color: #f7d049;background-color: #24292e;"/>
 
@@ -85,8 +85,9 @@ onUnmounted(() => {
         right: 0;
         height: 50px;
         line-height: 50px;
-        background-color: rgba(247, 208, 73,.9);
-        box-shadow:0 4px 10px rgba(0,0,0,0.3);
+        // background-color: rgba(247, 208, 73,.9);
+        opacity: .8;
+        
         transition: all .8s ease;
         
       }

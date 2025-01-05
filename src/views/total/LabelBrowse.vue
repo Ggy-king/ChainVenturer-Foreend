@@ -162,7 +162,7 @@ const list = [
 
 <style scoped lang="scss">
 .infinite-list {
-  // height: 400px;
+  height: 400px;
   padding: 0;
   margin: 0;
   list-style: none;

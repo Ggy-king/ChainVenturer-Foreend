@@ -26,7 +26,7 @@ interface List {
 
 const getTabsList:() => Promise<List> = async() => {
   const res = await getTabsDate()
-  console.log(res.data);
+  console.log(res);
   return res.data.data
 }
 

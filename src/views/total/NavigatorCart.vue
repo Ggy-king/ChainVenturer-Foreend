@@ -13,12 +13,12 @@
 
     
     <div class="navigator-main">
-        <el-card style="max-width: 480px;">
+        <el-card style="max-width: 480px;border-radius: 8px;">
             <img src="https://www.528btc.com/web-v2/img/nav/coinmarket.png" alt="">
             <span>加密资产价格跟踪网站</span>
             <template #footer>通过价格跟踪，投资者可以识别价格趋势和交易机会</template>
         </el-card>
-        <el-card style="max-width: 480px; margin-top: 10px;">
+        <el-card style="max-width: 480px;border-radius: 8px; margin-top: 10px;">
             <img src="https://www.528btc.com/web-v2/img/nav/greedy.png" alt="">
             <span>恐惧与贪婪指数查询</span>
             <template #footer>帮助投资人快速了解市场上的情绪倾向，从而做出更明智的投资决策</template>

@@ -1,7 +1,7 @@
 <!-- 快讯列表 -->
 
 <script setup lang="ts">
-import SideHotCart from '@/views/news/SideHotCart.vue';
+import SideHotCart from '@/components/SideHotCart.vue';
 import ButtonDecoration from '@/views/news/ButtonDecoration.vue';
 
 import {ref} from 'vue'
@@ -127,8 +127,8 @@ const switchBgcColor = (num:number) => {
 
         <!-- 侧边栏 -->
         <div class="side">
-            <SideHotCart></SideHotCart>
-            <SideHotCart></SideHotCart>
+            <SideHotCart title="热门文章"/>
+            <SideHotCart title="最火币种"/>
         </div>
     </div>
 </template>
@@ -139,7 +139,7 @@ const switchBgcColor = (num:number) => {
     width: 820px;
     &-head {
         padding:10px 0;
-        background-color: #fafafa;
+        background-color: #fff;
         border-radius: 20px;
        
         
@@ -171,8 +171,6 @@ const switchBgcColor = (num:number) => {
 
         }
     }
-
-
 
 
     .side {

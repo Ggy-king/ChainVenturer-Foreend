@@ -200,7 +200,7 @@ onBeforeUnmount(() => {
 
   .arrow {
     position: absolute;
-    bottom:0;
+    bottom: 10px;
     animation: arrowAn 1s ease infinite alternate;
   }
 }
@@ -218,8 +218,8 @@ onBeforeUnmount(() => {
   position: absolute;
   top: 0;
   left: calc(50% + 600px);
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   background-color: #1a0dab;
   border-radius: 20px;
   opacity: .5;
@@ -234,8 +234,8 @@ onBeforeUnmount(() => {
   height: 300px;
   background-color: #e0f7fa;
   border-radius: 50%;
-  transform-origin: 300px 300px; /* 设置旋转中心为容器中心减去圆的一半大小 */
-  animation: rotateCircle 30s linear infinite;
+  transform-origin: 80px 400px; /* 设置旋转中心为容器中心减去圆的一半大小 */
+  animation: rotateCircle 30s linear infinite alternate;
 }
 
 
@@ -262,10 +262,10 @@ onBeforeUnmount(() => {
 
 @keyframes rotateCircle {
     from {
-      transform: translate(-50%, -50%) rotate(0deg);
+      transform: translate(-50%, -50%) rotate(-50deg);
     }
     to {
-      transform: translate(-50%, -50%) rotate(360deg);
+      transform: translate(-50%, -50%) rotate(100deg);
     }
 }
 

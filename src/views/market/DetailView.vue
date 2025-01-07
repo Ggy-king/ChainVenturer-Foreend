@@ -81,33 +81,41 @@ const tableData: User[] = [
 ]
 
 
-// 改变某一列单元格背景颜色
-const tableCellStyle = (data: { row: any, column: any, rowIndex: number, columnIndex: number }) => {
-    if (data.columnIndex === 1) {
-        console.log(data.column)
-    	return 'column-color'
-    }
-}
 
 
 </script>
 
 <template>
     <div class="detail">
-        <el-table 
+        <el-table
             :data="filterTableData" 
             style="width: 100%;" 
              
             empty-text="请主子刷新页面多等一会，数据马上就来！"
-            :cell-class-name="tableCellStyle"
+
+            :header-cell-style="{color: '#89939e'}"
+            cell-class-name="cell-body"
         >
             <el-table-column label="序号" prop="order" sortable />
-            <el-table-column label="品种" prop="name" />
-            <el-table-column label="实时价格" prop="price" sortable  />
-            <el-table-column label="振幅" prop="amplitude" sortable  />
+            <el-table-column label="品种" prop="name" class-name="name"/>
+            <el-table-column label="实时价格" prop="price" sortable>
+              <template #default="scope">￥{{ scope.row.price }}</template>
+            </el-table-column>
+
+            <el-table-column label="振幅" prop="amplitude" sortable class-name="amplitude" >
+              <template #default="scope">{{ scope.row.amplitude }} %</template>
+            </el-table-column>
+
             <el-table-column label="换手" prop="change" sortable  />
-            <el-table-column label="成交量" prop="turnover" sortable  />
-            <el-table-column label="市值" prop="market" sortable  />
+
+            <el-table-column label="市值" prop="market" sortable  >
+              <template #default="scope">{{ scope.row.market }}亿</template>
+            </el-table-column>
+
+            <el-table-column label="成交量" prop="turnover" sortable >
+              <template #default="scope">{{ scope.row.turnover }}亿 USDT</template>
+            </el-table-column>
+
             
             <el-table-column fixed="right">
             <template #header>
@@ -121,6 +129,7 @@ const tableCellStyle = (data: { row: any, column: any, rowIndex: number, columnI
         </el-table>
     </div>
 </template>
+<!-- #409eff -->
 
 <style scoped lang="scss">
 .detail {
@@ -131,34 +140,26 @@ const tableCellStyle = (data: { row: any, column: any, rowIndex: number, columnI
         color: pink;
     }
 
-    // ::v-deep(.el-table__header) {
-    //     color: pink;
-    // }
+    .el-table {
+      color: #000;
 
-    // ::v-deep(.el-table__header-wrapper) {
-    //     color: pink;
-    // }
-
-    :deep(.el-table th) {
-        background-color: rgba(1, 127, 253,.5);
-        // background: linear-gradient(to right,#037efb,#00cae0);
-        color: #000;
-    }
-    // #037efb
-    // #00cae0
-    :deep(.el-table__body tr) {
-        background-color: #ebf0eb;
-    }
-    :deep(.el-table__body td) {
+      :deep(.cell-body) {
         padding: 0;
         height: 64px;
-        // background-color: #ebeff0;
-    }
-    .el-table .column-color {
-        background-color: red;
+      }
+      
+      
+      :deep(.name) {
+        color: #409eff;
+      }
+      :deep(.amplitude) {
+        color: #f23f58;
+      }
     }
 
+  
     
-}
-// table-header
+   
+    
+  }
 </style>

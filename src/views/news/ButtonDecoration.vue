@@ -93,7 +93,7 @@ const handleClickBtn = (num:number) => {
 }
 .social-btn .btn {
   display: inline-block;
-  background-color: #fff;
+  background-color: #f2f3f5;
   width: 90px;
   height: 90px;
   line-height: 90px;

@@ -4,17 +4,15 @@ import PersonalityView from './PersonalityView.vue'
 import TopicCart from './TopicCart.vue'
 import TabMain from './TabMain.vue'
 import NavigatorCart from './NavigatorCart.vue'
-import NewsCart from './NewsCart.vue'
+import NewsCart from '@/components/NewsCart.vue'
 import CarouselView from './CarouselView.vue'
-
-
-import { ref} from 'vue';
 
 
 
 </script>
 
 <template>
+
   <!-- 个性渲染 -->
   <PersonalityView></PersonalityView>
 
@@ -52,6 +50,8 @@ import { ref} from 'vue';
 </template>
 
 <style scoped lang="scss">
+
+
 
 .personality{
   position: absolute;

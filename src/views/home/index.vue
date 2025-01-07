@@ -30,6 +30,7 @@ const handleScroll = () => {
  
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
+
 });
  
 onUnmounted(() => {
@@ -52,7 +53,7 @@ onUnmounted(() => {
         <!-- 主体部分 -->
         <el-main>
           <router-view></router-view>
-          <el-backtop :right="60" :bottom="100" style="color: #f7d049;background-color: #24292e;"/>
+          <el-backtop :right="60" :bottom="100" style="color: #f7d049;background-color: #9ea294;"/>
 
         </el-main>
 
@@ -76,7 +77,7 @@ onUnmounted(() => {
       top: 0;
       width: 100%;
       padding: 0;
-      z-index: 999;
+      z-index: 9;
       }
       .fixed {
         position: fixed;

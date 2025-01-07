@@ -17,9 +17,9 @@ const router = createRouter({
           component: TotalView
         },
         {
-          path: 'answer',
-          name: 'answer',
-          component:() => import('@/views/answer/index.vue'), 
+          path: 'write',
+          name: 'write',
+          component:() => import('@/views/write/index.vue'), 
         },
         {
           path: 'articles',
@@ -37,9 +37,19 @@ const router = createRouter({
           component: () => import('@/views/market/index.vue'),
         },
         {
+          path: 'market-show',
+          name: 'marketShow',
+          component: () => import('@/views/market-show/index.vue'),
+        },
+        {
           path: 'news',
           name: 'news',
           component: () => import('@/views/news/index.vue'),
+        },
+        {
+          path: 'tool',
+          name: 'tool',
+          component: () => import('@/views/tool/index.vue'),
         },
         {
           path: 'rates',
@@ -56,6 +66,12 @@ const router = createRouter({
           name: 'navigator',
           component: () => import('@/views/navigator/index.vue'),
         },
+        {
+          path: 'essay',
+          name: 'essay',
+          component: () => import('@/views/essay/index.vue'),
+        },
+
       ]
     }
     

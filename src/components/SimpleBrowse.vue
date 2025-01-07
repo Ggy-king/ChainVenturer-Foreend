@@ -1,6 +1,7 @@
 <!-- 简洁浏览   -->
 
 <script setup lang="ts">
+
 const list =[
     {
         id: 1,

@@ -5,7 +5,7 @@ import { Search } from '@element-plus/icons-vue'
 
 const state = reactive({
   circleUrl:
-    'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+    'src/assets/images/user-avatar.png',
 })
 
 
@@ -29,10 +29,11 @@ const { circleUrl } = toRefs(state)
         <li><router-link :to="{ name:'market' }">行情</router-link></li>
         <li><router-link :to="{ name:'topic' }">专题</router-link></li>
         <li><router-link :to="{ name:'news' }">快讯</router-link></li>
+        <li><router-link :to="{ name:'tool' }">工具</router-link></li>
         <li><router-link :to="{ name:'rates'}">汇率</router-link></li>
         <li><router-link :to="{ name:'data' }">数据</router-link></li>
         <li><router-link :to="{ name:'articles' }">文章</router-link></li>
-        <li><router-link :to="{ name:'answer' }">问答</router-link></li>
+        <li><router-link :to="{ name:'write' }">创作</router-link></li>
         <li><router-link :to="{ name:'navigator' }">导航</router-link></li>
       </ul>
 
@@ -65,11 +66,15 @@ const { circleUrl } = toRefs(state)
 <style scoped lang="scss">
 .con_nav {
  
-  height: 70px;
-  background-color: #f7d049;
+  height: 60px;
+  // background: linear-gradient(to right, #f7d049, #ff9800);
+  background: linear-gradient(to right, #f7d049, #66bb6a);
+  // background: linear-gradient(to right, #f7d049, #fbc02d);
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+
   font-size: 12px;
   color: #000;
-  line-height: 70px;
+  line-height: 60px;
   transition: all .8s ease;
   
   .center {
@@ -96,6 +101,7 @@ const { circleUrl } = toRefs(state)
       display: flex;
       
         .el-input {
+          font-size: 12px;
           --el-input-placeholder-color: #757575;
           --el-input-text-color: #000;
           --el-input-focus-border-color: #c6d5e7;
@@ -107,6 +113,8 @@ const { circleUrl } = toRefs(state)
         .login {
           margin: auto 0;
           border-color: #fff;
+          font-size: 12px;
+          color: #000;
           background-color: transparent;
 
           &:hover {

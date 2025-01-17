@@ -11,3 +11,4 @@ export default pinia
 
 // 下面这样暴露是为了其他组件引入时更加方便 直接引入 @/stores 就可以
 export * from './modules/system.ts'
+export * from './modules/url.ts'

@@ -46,7 +46,7 @@ import IconFunny from'./icons/IconFunny.vue'
               <IconFunny class="secret"></IconFunny>
             </template>
             <template #default>
-              <img style="width: 100%;height: 100%;" src="../assets/images/footer-person.png" alt="">
+              <img style="width: 100%;height: 100%;" src="../assets/images/footer-person.png" alt="个人小介绍">
             </template>
           </el-popover>
           &nbsp;<el-icon><Back /></el-icon>

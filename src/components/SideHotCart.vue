@@ -4,12 +4,14 @@
 import UniversalHead from '@/components/UniversalHead.vue'
 
 interface Props {
-    title:string
+    title?:string
 }
 
 const props = withDefaults(defineProps<Props>(),{
     title: '汇总列表'
 })
+
+
 const title: string = props.title
 import type { List } from '@element-plus/icons-vue';
 import {ref} from 'vue'

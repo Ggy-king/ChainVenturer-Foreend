@@ -2,7 +2,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
+import cart1 from '@/assets/images/total-cart-1.jpg'
+import cart2 from '@/assets/images/total-cart-2.jpg'
+import cart3 from '@/assets/images/total-cart-3.jpg'
+import cart4 from '@/assets/images/total-cart-4.jpg'
+import cart5 from '@/assets/images/total-cart-5.jpg'
+import cart6 from '@/assets/images/total-cart-6.jpg'
 
 // 一种写法 定义props
 // interface Props {
@@ -11,11 +16,11 @@ import { ref } from 'vue'
 // const props = defineProps<Props>()
 
 // 第二种写法
-const props = withDefaults(defineProps<{
-  listIndex: number
-}>(),{
-  listIndex: 0
-})
+// const props = withDefaults(defineProps<{
+//   listIndex: number
+// }>(),{
+//   listIndex: 0
+// })
 
 
 const count = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
@@ -23,16 +28,13 @@ const load = () => {
   // count.value += 2
 }
 
-interface List {
-  list: string
-}
 
 
 const list = [
   
   {
     id: 5,
-    img: 'src/assets/images/total-cart-3.jpg',
+    img: cart3,
     title: '摩根大通、美国银行、花旗集团和富国银行在创纪录的利润份额中巩固了对银行业的权力：报告',
     introduce: '币界网报道： 在经历了爆炸性的增长后，美国最大的银行即将锁定近十年来银行业利润的最大份',
     theme: '政事',
@@ -41,7 +43,7 @@ const list = [
   },
   {
     id: 6,
-    img: 'src/assets/images/total-cart-3.jpg',
+    img: cart3,
     title: '摩根大通、美国银行、花旗集团和富国银行在创纪录的利润份额中巩固了对银行业的权力：报告',
     introduce: '币界网报道： 在经历了爆炸性的增长后，美国最大的银行即将锁定近十年来银行业利润的最大份',
     theme: '政事',
@@ -50,7 +52,7 @@ const list = [
   },
   {
     id: 7,
-    img: 'src/assets/images/total-cart-4.jpg',
+    img: cart4,
     title: '韩国人面临更高的比特币成本-最新加密货币新闻',
     introduce: '币界网报道： 最近的数据显示，韩国人为比特币支付的价格比美国买家高出约3%，主要是为了对冲',
     theme: '精彩再现',
@@ -59,7 +61,7 @@ const list = [
   },
   {
     id: 8,
-    img: 'src/assets/images/total-cart-4.jpg',
+    img: cart4,
     title: '韩国人面临更高的比特币成本-最新加密货币新闻',
     introduce: '币界网报道： 最近的数据显示，韩国人为比特币支付的价格比美国买家高出约3%，主要是为了对冲',
     theme: '精彩再现',
@@ -68,7 +70,7 @@ const list = [
   },
   {
     id: 9,
-    img: 'src/assets/images/total-cart-5.jpg',
+    img: cart5,
     title: 'Chainlink价格预测：1月份LINK Eyes跃升至34美元',
     introduce: '币界网报道： 根据最新的价格预测，Chainlink（LINK）正在为1月份的新一轮飙升做准备，以从目',
     theme: 'BTC',
@@ -77,7 +79,7 @@ const list = [
   },
   {
     id: 10,
-    img: 'src/assets/images/total-cart-5.jpg',
+    img: cart5,
     title: 'Chainlink价格预测：1月份LINK Eyes跃升至34美元',
     introduce: '币界网报道： 根据最新的价格预测，Chainlink（LINK）正在为1月份的新一轮飙升做准备，以从目',
     theme: 'BTC',
@@ -86,7 +88,7 @@ const list = [
   },
   {
     id: 11,
-    img: 'src/assets/images/total-cart-6.jpg',
+    img: cart6,
     title: '新Memecoin支持脑癌症研究-最新加密货币新闻',
     introduce: '币界网报道： 一位父亲希望为女儿罕见的脑癌症研究筹集资金，于是出现了一种新的模因币Pu',
     theme: '科技',
@@ -95,7 +97,7 @@ const list = [
   },
   {
     id: 12,
-    img: 'src/assets/images/total-cart-6.jpg',
+    img: cart6,
     title: '新Memecoin支持脑癌症研究-最新加密货币新闻',
     introduce: '币界网报道： 一位父亲希望为女儿罕见的脑癌症研究筹集资金，于是出现了一种新的模因币Pu',
     theme: '科技',
@@ -104,7 +106,7 @@ const list = [
   },
   {
     id: 1,
-    img: 'src/assets/images/total-cart-1.jpg',
+    img: cart1,
     title: '印度经济正在崩溃，这可能会让整个世界都崩溃',
     introduce: '币界网报道： 印度经济正在螺旋式上升。卢比正在像石头一样下沉，随之而来的是贸易赤字、资产转义大发大法师',
     theme: '区块链',
@@ -113,7 +115,7 @@ const list = [
   },
   {
     id: 2,
-    img: 'src/assets/images/total-cart-1.jpg',
+    img: cart1,
     title: '印度经济正在崩溃，这可能会让整个世界都崩溃',
     introduce: '币界网报道： 印度经济正在螺旋式上升。卢比正在像石头一样下沉，随之而来的是贸易赤字、资产转义大发大法师',
     theme: '区块链',
@@ -122,7 +124,7 @@ const list = [
   },
   {
     id: 3,
-    img: 'src/assets/images/total-cart-2.jpg',
+    img: cart2,
     title: '加密货币交易所代币克服了数字资产市场的低迷，在新的合并公告中飙升了近30%',
     introduce: '币界网报道： 一种加密货币交易所代币正在挑战本周整个市场的下跌趋势，飙升了近30%。在',
     theme: 'Web3',
@@ -131,7 +133,7 @@ const list = [
   },
   {
     id: 4,
-    img: 'src/assets/images/total-cart-2.jpg',
+    img: cart2,
     title: '加密货币交易所代币克服了数字资产市场的低迷，在新的合并公告中飙升了近30%',
     introduce: '币界网报道： 一种加密货币交易所代币正在挑战本周整个市场的下跌趋势，飙升了近30%。在',
     theme: 'Web3',

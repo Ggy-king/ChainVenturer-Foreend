@@ -1,74 +1,76 @@
 <!-- 简洁浏览   -->
 
 <script setup lang="ts">
+import bo from '@/assets/images/btc-icon.webp'
+
 
 const list =[
     {
         id: 1,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 2,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 3,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 4,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 5,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 6,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 7,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 8,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 9,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'
     },
     {
         id: 10,
-        img:'src/assets/images/btc-icon.webp',
+        img: bo,
         name:'BTC',
         price:'$95942.00',
         increase:'1.93%'

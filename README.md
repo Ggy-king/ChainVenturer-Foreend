@@ -1,4 +1,4 @@
-# SmartDomain 未来想改名为 ChainVenturer
+# ChainVenturer
 ___
 # 链界探索者 -- 基于数字货币的智域探索平台
 

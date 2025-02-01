@@ -24,10 +24,10 @@ import IconFunny from'@/components/icons/IconFunny.vue'
         </div>
 
         <div class="contact">
-          <div><IconWeixin></IconWeixin> 微信:18581897806</div>
-          <div><IconQQ></IconQQ> QQ:2998483320</div>
-          <div><IconEmail></IconEmail> 电子邮件:A18581897806@outlook.com</div>
-          <div><IconPhone></IconPhone> 联系电话:18581897806</div>
+          <div><IconWeixin></IconWeixin> 微信：ggy-xiaozhan</div>
+          <div><IconQQ></IconQQ> QQ：2998483320</div>
+          <div><IconEmail></IconEmail> 电子邮件：A18581897806@outlook.com</div>
+          <div><IconPhone></IconPhone> 联系电话：18581897806</div>
         </div>
 
       </div>
@@ -36,7 +36,7 @@ import IconFunny from'@/components/icons/IconFunny.vue'
           想看作者更多资源代码、学习内容，欢迎来看我的Github: <a href="https://github.com/ggy-king" target="_blank" >https://github.com/ggy-king</a>
         </span>
         <div>
-          我是22岁的“技术小旋风”，大四在读，全栈技能get√，代码界的“社交达人”。
+          我是24岁的“技术小旋风”，大四在读，全栈技能get√，代码界的“社交达人”。
           了解不是万岁，这里才是秘密&nbsp;<el-icon><Right /></el-icon>&nbsp;
           <el-popover
             :width="800"
@@ -46,7 +46,7 @@ import IconFunny from'@/components/icons/IconFunny.vue'
               <IconFunny class="secret"></IconFunny>
             </template>
             <template #default>
-              <img style="width: 100%;height: 100%;" src="../assets/images/footer-person.png" alt="个人小介绍">
+              <img style="width: 100%;height: 100%;" src="@/assets/images/footer-person.png" alt="个人小介绍">
             </template>
           </el-popover>
           &nbsp;<el-icon><Back /></el-icon>

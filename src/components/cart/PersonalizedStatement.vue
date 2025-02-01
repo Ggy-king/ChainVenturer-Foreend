@@ -80,11 +80,9 @@ onMounted(() => {
     overflow: hidden; /* 防止内容溢出 */
     
 
-    // background: linear-gradient(135deg, #f0e68c,#e0f7fa );
     background-image: url('@/assets/images/person-back.png');
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 10px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0,.2); 
     padding: 10px; 
     position: relative; /* 为伪元素定位做准备 */

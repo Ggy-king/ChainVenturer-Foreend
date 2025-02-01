@@ -1,26 +1,21 @@
 <!-- 文章列表 -->
 
 <script setup lang="ts">
-import cart1 from '@/assets/images/total-cart-1.jpg'
-import cart2 from '@/assets/images/total-cart-2.jpg'
-import cart3 from '@/assets/images/total-cart-3.jpg'
-import cart4 from '@/assets/images/total-cart-4.jpg'
-import cart5 from '@/assets/images/total-cart-5.jpg'
-import cart6 from '@/assets/images/total-cart-6.jpg'
+import { useRouter } from 'vue-router';
 
-// 一种写法 定义props
-// interface Props {
-//   listIndex: number
-// }
-// const props = defineProps<Props>()
 
-// 第二种写法
-// const props = withDefaults(defineProps<{
-//   listIndex: number
-// }>(),{
-//   listIndex: 0
-// })
+// -------------接收文章列表的渲染参数
+const articlesList = withDefaults(defineProps<{
+  list: any
+}>(),{
+  list: []
+})
 
+// 跳转文章
+const router = useRouter()
+const handleToEssay = (id:string) => {
+  router.push({name: 'essay',params: { id } })
+}
 
 const count = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 const load = () => {
@@ -29,145 +24,35 @@ const load = () => {
 
 
 
-const list = [
-  
-  {
-    id: 5,
-    img: cart3,
-    title: '摩根大通、美国银行、花旗集团和富国银行在创纪录的利润份额中巩固了对银行业的权力：报告',
-    introduce: '币界网报道： 在经历了爆炸性的增长后，美国最大的银行即将锁定近十年来银行业利润的最大份',
-    theme: '政事',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 6,
-    img: cart3,
-    title: '摩根大通、美国银行、花旗集团和富国银行在创纪录的利润份额中巩固了对银行业的权力：报告',
-    introduce: '币界网报道： 在经历了爆炸性的增长后，美国最大的银行即将锁定近十年来银行业利润的最大份',
-    theme: '政事',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 7,
-    img: cart4,
-    title: '韩国人面临更高的比特币成本-最新加密货币新闻',
-    introduce: '币界网报道： 最近的数据显示，韩国人为比特币支付的价格比美国买家高出约3%，主要是为了对冲',
-    theme: '精彩再现',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 8,
-    img: cart4,
-    title: '韩国人面临更高的比特币成本-最新加密货币新闻',
-    introduce: '币界网报道： 最近的数据显示，韩国人为比特币支付的价格比美国买家高出约3%，主要是为了对冲',
-    theme: '精彩再现',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 9,
-    img: cart5,
-    title: 'Chainlink价格预测：1月份LINK Eyes跃升至34美元',
-    introduce: '币界网报道： 根据最新的价格预测，Chainlink（LINK）正在为1月份的新一轮飙升做准备，以从目',
-    theme: 'BTC',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 10,
-    img: cart5,
-    title: 'Chainlink价格预测：1月份LINK Eyes跃升至34美元',
-    introduce: '币界网报道： 根据最新的价格预测，Chainlink（LINK）正在为1月份的新一轮飙升做准备，以从目',
-    theme: 'BTC',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 11,
-    img: cart6,
-    title: '新Memecoin支持脑癌症研究-最新加密货币新闻',
-    introduce: '币界网报道： 一位父亲希望为女儿罕见的脑癌症研究筹集资金，于是出现了一种新的模因币Pu',
-    theme: '科技',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 12,
-    img: cart6,
-    title: '新Memecoin支持脑癌症研究-最新加密货币新闻',
-    introduce: '币界网报道： 一位父亲希望为女儿罕见的脑癌症研究筹集资金，于是出现了一种新的模因币Pu',
-    theme: '科技',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 1,
-    img: cart1,
-    title: '印度经济正在崩溃，这可能会让整个世界都崩溃',
-    introduce: '币界网报道： 印度经济正在螺旋式上升。卢比正在像石头一样下沉，随之而来的是贸易赤字、资产转义大发大法师',
-    theme: '区块链',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 2,
-    img: cart1,
-    title: '印度经济正在崩溃，这可能会让整个世界都崩溃',
-    introduce: '币界网报道： 印度经济正在螺旋式上升。卢比正在像石头一样下沉，随之而来的是贸易赤字、资产转义大发大法师',
-    theme: '区块链',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 3,
-    img: cart2,
-    title: '加密货币交易所代币克服了数字资产市场的低迷，在新的合并公告中飙升了近30%',
-    introduce: '币界网报道： 一种加密货币交易所代币正在挑战本周整个市场的下跌趋势，飙升了近30%。在',
-    theme: 'Web3',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 4,
-    img: cart2,
-    title: '加密货币交易所代币克服了数字资产市场的低迷，在新的合并公告中飙升了近30%',
-    introduce: '币界网报道： 一种加密货币交易所代币正在挑战本周整个市场的下跌趋势，飙升了近30%。在',
-    theme: 'Web3',
-    date: '2024-12-26 20:45'
-
-  },
-  
-
-]
-
-
-
-
 
 </script>
 
 <template>
 
-    
     <ul v-infinite-scroll="load" class="infinite-list" style="overflow: auto">
-        <li v-for="i in list" :key="i.id" class="infinite-list-item">
+        <li v-for="i in articlesList.list" :key="i._id" class="infinite-list-item">
             <div class="info-cart">
-            <img :src="i.img" alt="">
-            <div class="info-cart-content">
-                <span class="title">{{ i.title }}</span>
-                <span class="introduce ellipsis">{{ i.introduce }}</span>
-                <div class="foot">
-                <span class="foot-left"><b>{{ i.theme }}</b> · {{ i.date }}</span>
-                <span class="foot-right"> 
-                    <el-icon><View /></el-icon> 观看
-                    <el-icon><Star /></el-icon> 收藏
-                    <el-icon><Flag /></el-icon> 已展示
-                </span>
-                </div>
-            </div>
+              <img :src="i.imgPath" :alt="i.title" @click="handleToEssay(i._id)">
+              <div class="info-cart-content">
+                  <span class="title" @click="handleToEssay(i._id)" >{{ i.title }}</span>
+                  <span class="introduce ellipsis">{{ i.summarize }}</span>
+                  <div class="foot">
+                    <span class="foot-left"><b>{{ i.topic }}</b><strong> · </strong>{{ i.put_time }}</span>
+                    <span class="foot-right"> 
+                        <span>
+                          <el-icon><View /></el-icon>{{ i.view_num }}
+                        </span>
+                        <span 
+                          style="cursor: pointer;"
+                        >
+                          <el-icon><Star /></el-icon>收藏
+                        </span>
+                        <span>
+                          <el-icon><Flag /></el-icon>已展示
+                        </span>
+                      </span>
+                  </div>
+              </div>
             </div>
         </li>
     </ul>
@@ -178,7 +63,6 @@ const list = [
 <style scoped lang="scss">
 
 .infinite-list {
-  // height: 400px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -194,23 +78,26 @@ const list = [
   align-items: center;
   justify-content: center;
   height: 200px;
-  border-bottom: 1px solid #bac3ce;
+  border-bottom: 1px solid #f2f2f2;
 
   img {
     width: 200px;
-    height: 130px;
+    height: 136px;
+    border-radius: 6px;
     margin-right: 14px;
+    cursor: pointer;
   }
 
   .info-cart-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 130px;
+    height: 136px;
     width: 586px;
     .title {
       font-size: 18px;
       font-weight: 600;
+      cursor: pointer;
     }
     .introduce {
       flex: 1;
@@ -223,12 +110,19 @@ const list = [
       &-left b {
         text-decoration: underline;
         color: #e96868;
+        font-size: 16px;
       }
       &-right {
         float: right;
-        .el-icon {
-          vertical-align: middle;
+        display: flex;
+        span {
+          display: flex;
+          align-items: center;
           margin-left: 30px;
+          .el-icon {
+            font-size: 16px;
+            margin-right: 4px;
+          }
         }
       }
     }

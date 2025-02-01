@@ -3,11 +3,7 @@
 import request from '@/utils/request.ts'
 
 // 发送表单数据加图片数据加文章数据
-
-export const postArticlesData = () => {
-    return request.post('/articles',{
-        username: 'admin',
-        password: '123456'
-    })
+export const getArticlesData = (num:number) => {
+    return request.get(`/articles/${num}`)
 }
 

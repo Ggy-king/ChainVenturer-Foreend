@@ -2,55 +2,48 @@
 <script setup lang="ts">
 import LoginView from '@/components/widgets/LoginView.vue'
 
-import { ref,toRefs,reactive,watch } from 'vue'
+import { ref,toRefs,reactive,watch,onMounted } from 'vue'
 import { useRouter,useRoute } from 'vue-router'
 
 
 import { Search } from '@element-plus/icons-vue'
 import avatar from '@/assets/images/user-avatar.png'
+import avatarL from '@/assets/images/user-avatar-1.png'
 
-import { UrlStore,loginFromStore } from '@/stores'
+import { UrlStore,userFromStore } from '@/stores'
 import hooks from '@/utils/hooks'
 
 
 
 
 // ---------头像相关
-const state = reactive({
-  circleUrl:
-  avatar,
+const avatarImg = reactive({
+  circleUrl:avatar,
+  circleUrlL:avatarL,
 })
 
-const { circleUrl } = toRefs(state)
+const { circleUrl,circleUrlL } = toRefs(avatarImg)
 
 //---------- 搜索相关
-const querySearch = ref('')
-
 const router = useRouter()
 const route = useRoute()
-
+const querySearch = ref('')
 const url = UrlStore()
-
 const isSearchPath = ref(false)
 
+
 const handleSearch = ():void => {
-  
   if(querySearch.value.trim() === '') {
     hooks.message('请输入搜索内容','warning')
-  
   } else {
     if(isSearchPath.value) {
-      
       router.push({query: {keyword: querySearch.value}})
       querySearch.value = ''
-
     } else {
       window.open(`${url.baseUrl}/search?keyword=${encodeURIComponent(querySearch.value)}`)
       querySearch.value = ''
-
     }
   }
-
 }
 
 // 监听路径 总感觉不是好办法 日后看看能不能解决
@@ -62,16 +55,65 @@ watch(
     { immediate: true }
 )
 
+// 搜索提示
+interface LinkItem {
+  value: string
+  link: string
+}
 
+const links = ref<LinkItem[]>([])
+let timeout: ReturnType<typeof setTimeout>
+
+
+const loadAll = () => {
+  return [
+    { value: 'vue', link: 'https://github.com/vuejs/vue' },
+    { value: 'element', link: 'https://github.com/ElemeFE/element' },
+    { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
+    { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
+    { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
+    { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
+    { value: 'babel', link: 'https://github.com/babel/babel' },
+  ]
+}
+const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
+  const results = queryString
+    ? links.value.filter(createFilter(queryString))
+    : links.value
+
+  clearTimeout(timeout)
+  timeout = setTimeout(() => {
+    cb(results)
+  }, 2000)
+}
+const createFilter = (queryString: string) => {
+  return (restaurant: LinkItem) => {
+    return (
+      restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+    )
+  }
+}
+
+onMounted(() => {
+  links.value = loadAll()
+})
 
 
 
 // -----------登录/注册
-const loginFrom = loginFromStore()
+const loginStore = userFromStore()
 
 
 const handleLogin = () => {
-  loginFrom.changeLoginVisible(true)
+  loginStore.changeLoginVisible(true)
+}
+const handleLoginOut = () => {
+  hooks.confirm('您确定要退出账户吗？','登出')
+  .then(() => {
+    loginStore.removeToken()
+    loginStore.removeUser()
+    hooks.message('退出成功，期待与您下次相见','success')
+  })
 }
 
 </script>
@@ -83,7 +125,6 @@ const handleLogin = () => {
       <!-- 图标 -->
       <div class="logo">
         <h1><a href="/" title="返回首页">链界探索者-基于数字货币的智域探索平台</a></h1>
-        <span>链界探索者</span>
       </div>
 
       <!-- 导航栏 -->
@@ -101,24 +142,41 @@ const handleLogin = () => {
       </ul>
 
       <div class="component">
-        <!-- 搜索框 -->
-        <div class="mt-4">
-          <el-input
-            v-model="querySearch"
-            placeholder="请搜索"
-            class="input-with-select"
-          >
-            <template #append>
-              <el-button style="background-color: #f2f3f4;" :icon="Search" @click="handleSearch" />
-            </template>
-          </el-input>
-        </div>
+
+        <el-autocomplete
+          v-model="querySearch"
+          :fetch-suggestions="querySearchAsync"
+          :popper-append-to-body="false"
+          placeholder="请搜索"
+          @keyup.enter="handleSearch"
+        >
+          <template #append>
+            <el-icon @click="handleSearch">
+              <Search />
+            </el-icon>
+          </template>
+        </el-autocomplete>
 
         <!-- 头像 -->
-        <el-avatar :size="40" :src="circleUrl" />
+        <el-avatar v-if="!loginStore.token" :size="40" :src="circleUrl" @click="handleLogin"/>
+
+        <el-dropdown v-if="loginStore.token"  :teleported="false" placement="bottom">
+          <el-avatar :size="40" :src="circleUrlL"/>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <router-link :to="{ name:'person',query:{mode: 'user'} }">
+                <el-dropdown-item>个人中心</el-dropdown-item>
+              </router-link>
+              <router-link :to="{ name:'person',query:{mode: 'set'} }">
+                <el-dropdown-item>用户设置</el-dropdown-item>
+              </router-link>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
 
         <!-- 登录 -->
-        <el-button class="login" @click="handleLogin"><el-icon><Position /></el-icon>&nbsp;&nbsp;登录账号</el-button>
+        <el-button class="login" v-if="!loginStore.token" @click="handleLogin"><el-icon><Position /></el-icon>&nbsp;&nbsp;登录账户</el-button>
+        <el-button class="login" v-if="loginStore.token" @click="handleLoginOut"><el-icon><Position /></el-icon>&nbsp;&nbsp;退出登录</el-button>
         <LoginView />
 
       </div>
@@ -130,14 +188,15 @@ const handleLogin = () => {
 .con_nav {
  
   height: 60px;
-  background: linear-gradient(to right, #f7d049, #66bb6a);
-  background: #87CEEB;
-  // background: linear-gradient(to bottom, #324476, #8387ad);
+  // background: #444;
+  background: #36526f;
+  // background: #174e85;
+
   
   box-shadow:0 4px 10px rgba(0,0,0,0.3);
   font-size: 12px;
 
-  color: #2b2a2a;
+  color: #fff;
   line-height: 60px;
   transition: all .8s ease;
   
@@ -150,16 +209,20 @@ const handleLogin = () => {
     .logo {
       display: flex;
       justify-content: start;
+
+      width: 240px; /* 设置宽度，根据Logo大小调整 */
+
         h1 {
           margin: 0;
           font-size: 1.5em;
           text-indent: -9999px; /* 隐藏文字 */
-          background-image: url('@/assets/images/logoWirte.png'); /* 使用背景图像作为Logo */
+
+          background-position: center center;
+          background-image: url('@/assets/images/logo.png'); /* 使用背景图像作为Logo */
           background-size: contain; /* 保持图像比例 */
           background-repeat: no-repeat; /* 不重复图像 */
-          width: 70px; /* 设置宽度，根据Logo大小调整 */
+          width: 220px; /* 设置宽度，根据Logo大小调整 */
           height: 100%; /* 设置高度，根据Logo大小调整 */
-        
           a {
             display: block;
             width: 100%;
@@ -167,11 +230,6 @@ const handleLogin = () => {
           }
           
       }
-      span {
-            color: #19425a;
-            font-size: 20px;
-            font-weight: 600;
-          }
     }
     .nav {
       display: flex;
@@ -180,10 +238,10 @@ const handleLogin = () => {
       li {
         padding: 0 10px;
         &:hover {
-          color: #fff;
+          color: #ae782c;
         }
         a.router-link-active {
-          color: #fff;
+          color: #FFD700;
         }
       }
     }
@@ -191,41 +249,65 @@ const handleLogin = () => {
     .component {
       display: flex;
       
-        .el-input {
-          font-size: 12px;
+        :deep(.el-autocomplete) {
+          margin-left: 20px;
           width: 260px;
-          --el-input-placeholder-color: #70757b;
-          --el-input-text-color: #000;
-          --el-input-bg-color: #f2f3f4;
-          --el-input-focus-border-color: #f2f3f4;
-          --el-input-hover-border-color: #f2f3f4;
-          --el-input-border-color: #f2f3f4;
-          --el-input-focus-bg-color: #fff;
+          font-size: 12px;
 
-
+          .el-input {
+            --el-input-placeholder-color: #70757b;
+            --el-input-text-color: #000;
+            --el-input-bg-color: #f2f3f4;
+            --el-input-focus-border-color: #f2f3f4;
+            --el-input-hover-border-color: #f2f3f4;
+            --el-input-border-color: #f2f3f4;
+            --el-input-focus-bg-color: #fff;
+          }
+          .el-icon:hover {
+            cursor: pointer;
+          }
         }
+
+
         .el-avatar {
           margin: auto 10px;
           margin-left: 40px;
           width: 36px;
           height: 36px;
+          img {
+            width: 100%;
+          }
+          &:hover {
+            cursor: pointer;
+          }
         }
+
+        :deep(.el-dropdown__popper) {
+          --el-dropdown-menuItem-hover-color:#ae782c;
+        }
+        :deep(.el-dropdown-menu__item:not(.is-disabled):hover) {
+          background-color: #fdf7ef;
+        }
+
         .login {
           margin: auto 0;
-          border-color: #005ae0;
+          border-color: #275787;
           border-radius: 20px;
           height: 36px;
           font-size: 12px;
           font-weight: 600;
-          color: #fff;
-          background-color: #005ae0;
-
+          color: #000;
+          background-color: #fff;
           &:hover {
-            color: #fff;
+            color: #ae782c;
           }
         }
+        
     }
     
+  }
+
 }
-}
+
+
 </style>

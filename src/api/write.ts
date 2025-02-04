@@ -8,3 +8,10 @@ export const postWriteInfo = (formObj:Record<string,any>) => {
         formObj
     })
 }
+
+// 修改文章
+export const postWriteEdit = (formObj:Record<string,any>) => {
+    return request.post('/write/update',{
+        formObj
+    })
+}

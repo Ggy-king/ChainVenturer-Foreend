@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import HomeView from '@/views/home/index.vue'
-import TotalView from '@/views/total/index.vue'
  
+import { userFromStore } from '@/stores'
+import hooks from '@/utils/hooks'
+
 const routes: Array<RouteRecordRaw> =  [
   {
     path: '/',
@@ -13,7 +15,7 @@ const routes: Array<RouteRecordRaw> =  [
       {
         path: 'total',
         name: 'total',
-        component: TotalView
+        component: () => import('@/views/total/index.vue')
       },
       {
         path: 'articles',
@@ -57,12 +59,12 @@ const routes: Array<RouteRecordRaw> =  [
         component: () => import('@/views/navigator/index.vue'),
       },
       {
-        path: 'essay',
+        path: 'essay/:id?',
         name: 'essay',
         component: () => import('@/views/essay/index.vue'),
       },
       {
-        path: 'write',
+        path: 'write/:id?',
         name: 'write',
         component:() => import('@/views/write/index.vue'), 
       },
@@ -76,6 +78,16 @@ const routes: Array<RouteRecordRaw> =  [
         name: 'search',
         component: () => import('@/views/search/index.vue'),
       },
+      {
+        path: 'person',
+        name: 'person',
+        component: () => import('@/views/person/index.vue'),
+      },
+      {
+        path: '/:catchAll(.*)', // 动态路由匹配所有未定义的路由
+        name: 'NotFound',
+        component: () => import('@/views/notFound/index.vue'),
+      }
 
     ]
   }
@@ -87,7 +99,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {    // 控制滚动条是否保存位置
-    if (['articles','write'].includes(to.name as string)) {
+    if (['articles'].includes(to.name as string)) {
       if(savedPosition) {
 
         return savedPosition;
@@ -96,6 +108,24 @@ const router = createRouter({
       return { top: 0 }; // 返回页面顶部
     }
   }
+})
+
+const protectedViews:string[] = ['/person']
+router.beforeEach((to,from,next) => {
+
+  if(protectedViews.includes(to.path)) {
+    const userStore = userFromStore()
+
+    if(userStore.token) {
+      return next()
+    } else {
+      next('/total')
+      hooks.message('您还没有登录，请先登录','warning')
+    }
+  }
+
+  next()
+
 })
 
 export default router

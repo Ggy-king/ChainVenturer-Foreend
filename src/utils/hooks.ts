@@ -1,7 +1,9 @@
 // 用于封装一些全局的hook，可以单独导入某些方法使用，也可以统一导入 hook 对象，从 hook 对象中 . 具体的方法
  
-import { ElMessage, ElMessageBox, ElNotification } from 'element-plus'
- 
+import { ElMessage, ElMessageBox } from 'element-plus'
+
+// ElNotification
+
 /**
  * 封装一个全局的 message 方法，用于显示消息提示
  * @param message 消息内容
@@ -13,14 +15,13 @@ export const message = (
   type: 'success' | 'warning' | 'info' | 'error' = 'success',
   options: any = {}
 ) => {
-
   ElMessage({
+    message,
+    type,
     duration: 4000,
     offset: 100,
     showClose: true,
     plain: true,
-    message,
-    type,
     ...options
   })
 }
@@ -37,9 +38,12 @@ export const message = (
 export const confirm = (message: string, title: string = '提示', options: any = {}) => {
   if (Object.keys(options).length === 0) {
     options = {
-      confirmButtonText: '确定',
+      confirmButtonText: '确认',
       cancelButtonText: '取消',
-      type: 'warning'
+      type: 'warning',
+      lockScroll: false,
+      roundButton: true,
+      confirmButtonClass:'confirm-button'
     }
   }
   return new Promise((resolve, reject) => {
@@ -55,7 +59,7 @@ export const confirm = (message: string, title: string = '提示', options: any 
 
  
 /**
- * 统一导出一个 hook 方法对象，包含所有 hook 方法
+ * 统一导出一个 hooks 方法对象，包含所有 hook 方法
  */
 export default {
   message,

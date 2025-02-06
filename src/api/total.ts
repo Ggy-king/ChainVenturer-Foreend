@@ -1,5 +1,4 @@
 // 封装total页面需要用到的axios请求
-
 import request from '@/utils/request.ts'
 
 // 获取行情简版数据

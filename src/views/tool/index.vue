@@ -35,7 +35,6 @@ defineOptions({
         header {
             position: relative;
             height: 200px;
-            background-color: darkcyan;
             overflow: hidden;
             img {
                 width: 100%;

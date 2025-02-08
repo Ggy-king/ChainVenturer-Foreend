@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import SimpleBrowse from '@/components/SimpleBrowse.vue';
-import PersonalizedStatement from '@/components/PersonalizedStatement.vue';
+import SimpleBrowse from '@/components/cart/SimpleBrowse.vue';
+import PersonalizedStatement from '@/components/cart/PersonalizedStatement.vue';
 import ChartOverview from '@/views/market/ChartOverview.vue';
 import DetailView from '@/views/market/DetailView.vue';
 

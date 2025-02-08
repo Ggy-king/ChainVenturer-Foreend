@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PersonalizedStatement from '@/components/PersonalizedStatement.vue';
+import PersonalizedStatement from '@/components/cart/PersonalizedStatement.vue';
 import SideRates from '@/views/rates/SideRates.vue';
 import CurrencyConverter from '@/views/rates/CurrencyConverter.vue';
 import PopularRates from '@/views/rates/PopularRates.vue';

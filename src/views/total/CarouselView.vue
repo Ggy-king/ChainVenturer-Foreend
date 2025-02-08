@@ -36,7 +36,7 @@
 
   }
   .el-carousel__item:nth-child(1) {
-    background-image: url('@/assets/images/total-rotate-app.webp');
+    background-image: url('@/assets/images/total-rotate-1.png');
     background-size: 100% 100%;
 
   }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import SimpleBrowse from '@/components/SimpleBrowse.vue'
-import PersonalizedStatement from '@/components/PersonalizedStatement.vue'
-import SideHotCart from '@/components/SideHotCart.vue';
-import LabelBrowse from './LabelBrowse.vue';
+import SimpleBrowse from '@/components/cart/SimpleBrowse.vue'
+import PersonalizedStatement from '@/components/cart/PersonalizedStatement.vue'
+import SideHotCart from '@/components/cart/SideHotCart.vue';
+import ArticlesList from './ArticlesList.vue';
 
 
 defineOptions({
@@ -17,13 +17,13 @@ defineOptions({
   <PersonalizedStatement></PersonalizedStatement>
   
   <div class="articles">
-    <LabelBrowse></LabelBrowse>
+    <ArticlesList />
 
 
     <!-- 侧边栏 -->
     <div class="side">
-      <SideHotCart></SideHotCart>
-      <SideHotCart></SideHotCart>
+      <SideHotCart title="最热文章"></SideHotCart>
+      <SideHotCart title="最火币种"></SideHotCart>
     </div>
   </div>
  
@@ -34,9 +34,10 @@ defineOptions({
 .articles {
   position: relative;
   width: 820px;
+  min-height: 800px;
   .side {
       position: absolute;
-      top: 0;
+      top: 30px;
       right: -380px;
   }
 }

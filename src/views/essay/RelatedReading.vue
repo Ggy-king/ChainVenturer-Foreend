@@ -1,8 +1,8 @@
 <!-- 相关阅读 -->
 
 <script setup lang="ts">
-import UniversalHead from '@/components/UniversalHead.vue'
-import ArticleList from '@/components/ArticleList.vue'
+import UniversalHead from '@/components/widgets/UniversalHead.vue'
+import ArticleList from '@/components/widgets/ArticleList.vue'
 
 
 

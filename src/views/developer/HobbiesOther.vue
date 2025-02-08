@@ -19,7 +19,7 @@
                     </div>
                     <div class="futures-bottom">
                         <el-popover
-                        :width="640"
+                        :width="650"
                         popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
                         >
                         <template #reference>
@@ -38,17 +38,15 @@
                                 </p>
 
                                 <div style="display: flex;">
-                                    <img src="@/assets/images/developer-hobbies-1.jpg" alt="" style="width: 100%;height: 100%;">
-                                    <img src="@/assets/images/developer-hobbies-2.jpg" alt="" style="width: 100%;height: 100%;">
+                                    <img src="@/assets/images/developer-hobbies-1.jpg" alt="期货盈亏比" style="width: 100%;height: 100%;margin-right: 10px;">
+                                    <img src="@/assets/images/developer-hobbies-2.jpg" alt="期货排名" style="width: 100%;height: 100%;">
                                 </div>
-
-                            
                             </div>
                         </template>
                         </el-popover>
 
                         <el-popover
-                        :width="640"
+                        :width="1100"
                         popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
                         >
                         <template #reference>
@@ -57,17 +55,17 @@
 
                             <template #default>
                                 <div
-                                    style="width: 300px; height: 580px;"
+                                    style="width: 500px; height: 640px;"
                                 >
-                                
                                     <p
-                                    style="font-size: 14px; color: var(--el-color-info);display: block;"
+                                        style="font-size: 14px; color: var(--el-color-info);display: block;"
                                     >
                                     大学大部分时间都在写代码，所以只参加了一次比赛
                                     </p>
 
                                     <div style="display: flex;">
-                                        <img src="@/assets/images/developer-hobbies-3.jpg" alt="" style="width: 100%;height: 100%;">
+                                        <img style="width: 70%;height: 100%;margin-right: 10px;" src="@/assets/images/developer-hobbies-3.jpg" alt="期货奖状" >
+                                        <img style="width: 140%;height: 100%;" src="@/assets/images/developer-hobbies-4.jpg" alt="期货奖状净值">
                                     </div>
 
                                 
@@ -86,7 +84,7 @@
                     </div>
                     <div class="futures-bottom">
                         <el-popover
-                        :width="1240"
+                        :width="1220"
                         popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
                         >
                         <template #reference>
@@ -97,7 +95,6 @@
                                 <div
                                     style="width: 600px; height: 450px;"
                                 >
-                                
                                     <p
                                     style="font-size: 14px; color: var(--el-color-info);display: block;"
                                     >
@@ -105,11 +102,9 @@
                                     </p>
 
                                     <div style="display: flex;">
-                                        <img src="@/assets/images/developer-hobbies-5.png" alt="" style="width: 100%;height: 100%;">
-                                        <img src="@/assets/images/developer-hobbies-6.jpg" alt="" style="width: 100%;height: 100%;">
+                                        <img style="width: 96%;height: 100%;margin-right: 10px;" src="@/assets/images/developer-hobbies-5.png" alt="代码展示">
+                                        <img style="width: 100%;height: 100%;" src="@/assets/images/developer-hobbies-6.jpg" alt="程序展示">
                                     </div>
-
-                                
                                 </div>
                             </template>
                         </el-popover>

@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import SimpleBrowse from '@/components/SimpleBrowse.vue'
 import PersonalityView from './PersonalityView.vue'
 import TopicCart from './TopicCart.vue'
 import TabMain from './TabMain.vue'
 import NavigatorCart from './NavigatorCart.vue'
-import NewsCart from '@/components/NewsCart.vue'
+import NewsCart from '@/components/cart/NewsCart.vue'
 import CarouselView from './CarouselView.vue'
-
 
 
 </script>
@@ -15,13 +13,6 @@ import CarouselView from './CarouselView.vue'
 
   <!-- 个性渲染 -->
   <PersonalityView></PersonalityView>
-
-
-  <!-- 简约浏览行情 -->
-  <SimpleBrowse></SimpleBrowse>
-
-  
-
 
   <div class="main-show">
     <div>

@@ -2,58 +2,95 @@
 
 <script setup lang="ts">
 
-const sectorList = [1,2,3,4,5,6,7,8,9,10]
+const sectorList = [1,2,3,4,5,6,7,8,9,10,11,12]
 
 import {ref,reactive,onMounted} from 'vue';
 
 import * as echarts from 'echarts/core';
-import { GridComponent,  } from 'echarts/components';
+import {  TitleComponent, GridComponent ,TooltipComponent, LegendComponent, } from 'echarts/components';
 import { BarChart } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 
-import type {GridComponentOption} from 'echarts/components'
+
+import type { GridComponentOption,TooltipComponentOption,TitleComponentOption, LegendComponentOption } from 'echarts/components'
 import type { BarSeriesOption } from 'echarts/charts';
 
 
-echarts.use([GridComponent, BarChart, CanvasRenderer]);
+echarts.use([TitleComponent,GridComponent, BarChart, CanvasRenderer,TooltipComponent,LegendComponent]);
 
 type EChartsOption = echarts.ComposeOption<
-  GridComponentOption | BarSeriesOption
+   TitleComponentOption | GridComponentOption | BarSeriesOption | TooltipComponentOption | LegendComponentOption
 >;
 
 
 const chartContainer = ref<HTMLDivElement | null>(null);
 
 const option: EChartsOption = reactive({
-    title: {
-    text: 'Stacked Area Chart'
+  title: {
+    text: '全市场涨跌分布',
+    textStyle: {
+        fontSize: '14px',
+        color: '#538fcb'
+    }
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    },
+    
+  },
+  legend: {
+    right: '0',
+    data: ['下跌数量','上涨数量']
+  },
+
+  grid: {
+    left: '1%',
+    right: '1%',
+    bottom: '10%',
+    top: '10%',
+    containLabel: true
   },
   xAxis: {
     type: 'category',
-    data: ['-60%以上','-60%','-40%', '-30%', '-20%', '-10%', '0', '10%', '20%','30%','40%','60%','60%以上']
+    nameLocation: 'middle',
+    axisLabel: {
+        interval: 0
+    },
+    data: ['-60%以上','-60%','-40%', '-30%', '-20%', '-10%', '-5%','5%', '10%', '20%','30%','40%','60%','60%以上']
   },
   yAxis: {
     type: 'value'
   },
      
   series: [
+  {
+      name: '下跌数量',
+      type: 'bar',
+      stack: 'Total',
+      itemStyle: {
+            color: '#00b98c'
+      },
+      label: {
+        show: true,
+        position: 'top'
+      },
+      data: [7, 16, 46, 65, 197, 110, 458,'-','-','-','-','-','-','-']
+    },
     {
-      data: [
-        120,
-        {
-          value: 200,
-          itemStyle: {
-            color: '#a90000'
-          }
-        },
-        150,
-        80,
-        70,
-        110,
-        130
-      ],
-      type: 'bar'
-    }
+      name: '上涨数量',
+      type: 'bar',
+      stack: 'Total',
+      itemStyle: {
+            color: '#f23f58'
+      },
+      label: {
+        show: true,
+        position: 'top'
+      },
+      data: ['-','-','-','-','-','-','-',564, 224, 46, 22, 150, 17, 26]
+    },
   ]
 });
 
@@ -90,12 +127,12 @@ onMounted(() => {
         <div class="title">市场总览</div>
 
         <div class="market-chart">
-            <div class="market-whole" ref="chartContainer">
-                
-            </div>
+            <el-card>
+                <div class="market-whole" ref="chartContainer"></div>
+            </el-card>
             <el-card class="market-rate">
                 <div class="rate-title">大盘评级</div>
-                <el-progress type="dashboard" :percentage="80" color="#00b98c" width="150" stroke-width="8">
+                <el-progress type="dashboard" :percentage="76" color="#00b98c" :width="150" :stroke-width="8">
                     <template #default="{ percentage }">
                         <span class="percentage-value">{{ percentage }}分</span>
                         <span class="percentage-label">注意风险</span>
@@ -104,7 +141,6 @@ onMounted(() => {
                 <div class="rate-bottom">
                     <span class="rate-info">投资建议</span>
                     <div class="rate-more">大盘震荡，适当参与</div>
-
                 </div>
             </el-card>
         </div>
@@ -163,9 +199,13 @@ onMounted(() => {
         display: flex;
         justify-content: space-between;
         height: 370px;
-        .market-whole {
+        .el-card {
             width: 910px;
             height: 370px;
+            .market-whole {
+            height: 370px;
+        }
+            
             // background-color: #ebeff0;
         }
         .market-rate {

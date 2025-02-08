@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PersonalizedStatement from '@/components/PersonalizedStatement.vue';
+import PersonalizedStatement from '@/components/cart/PersonalizedStatement.vue';
 import NavCart from './NavCart.vue'
 import AnchorPoint from './AnchorPoint.vue'
 

@@ -1,6 +1,6 @@
 <!-- 多数文章跳转页面 -->
 <script setup lang="ts">
-import PersonalizedStatement from '@/components/PersonalizedStatement.vue'
+import PersonalizedStatement from '@/components/cart/PersonalizedStatement.vue'
 import EssayShow from './EssayShow.vue'
 
 defineOptions({

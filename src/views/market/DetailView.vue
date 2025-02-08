@@ -93,13 +93,13 @@ const tableData: User[] = [
              
             empty-text="请主子刷新页面多等一会，数据马上就来！"
 
-            :header-cell-style="{color: '#89939e'}"
+            :header-cell-style="{color: '#89939e',fontWeight: 400,fontSize: '12px'}"
             cell-class-name="cell-body"
         >
-            <el-table-column label="序号" prop="order" sortable />
+            <el-table-column label="序号" prop="order" sortable class-name="order" />
             <el-table-column label="品种" prop="name" class-name="name"/>
             <el-table-column label="实时价格" prop="price" sortable>
-              <template #default="scope">￥{{ scope.row.price }}</template>
+              <template #default="scope"><span style="color: #ae782c;">￥ {{ scope.row.price }}</span></template>
             </el-table-column>
 
             <el-table-column label="振幅" prop="amplitude" sortable class-name="amplitude" >
@@ -109,7 +109,7 @@ const tableData: User[] = [
             <el-table-column label="换手" prop="change" sortable  />
 
             <el-table-column label="市值" prop="market" sortable  >
-              <template #default="scope">{{ scope.row.market }}亿</template>
+              <template #default="scope">{{ scope.row.market }} 亿</template>
             </el-table-column>
 
             <el-table-column label="成交量" prop="turnover" sortable >
@@ -137,7 +137,6 @@ const tableData: User[] = [
     min-height: 600px;
     .table-header {
         font-size: 16px;
-        color: pink;
     }
 
     .el-table {
@@ -145,11 +144,14 @@ const tableData: User[] = [
 
       :deep(.cell-body) {
         padding: 0;
-        height: 64px;
+        height: 50px;
       }
       
       
-      :deep(.name) {
+      // :deep(.name) {
+      //   color: #409eff;
+      // }
+      :deep(.order) {
         color: #409eff;
       }
       :deep(.amplitude) {
@@ -158,8 +160,6 @@ const tableData: User[] = [
     }
 
   
-    
-   
     
   }
 </style>

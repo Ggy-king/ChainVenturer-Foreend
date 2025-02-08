@@ -1,15 +1,20 @@
 <script setup lang="ts">
-
+import match1 from '@/assets/images/developer-match-1.jpg'
+import match2 from '@/assets/images/developer-match-2.jpg'
+import match3 from '@/assets/images/developer-match-3.png'
+import match4 from '@/assets/images/developer-match-4.png'
+import match5 from '@/assets/images/developer-match-5.png'
+import match6 from '@/assets/images/developer-match-6.png'
 
 
 const srcList =
   [
-  'src/assets/images/developer-match-1.jpg',
-  'src/assets/images/developer-match-2.jpg',
-  'src/assets/images/developer-match-3.png',
-  'src/assets/images/developer-match-4.png',
-  'src/assets/images/developer-match-5.png',
-  'src/assets/images/developer-match-6.png',
+  match1,
+  match2,
+  match3,
+  match4,
+  match5,
+  match6,
   ]
 
 

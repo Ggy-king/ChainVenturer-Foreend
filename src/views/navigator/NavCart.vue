@@ -128,9 +128,12 @@ header {
         .el-tabs__item:hover {
             color: #ae782c;
         }
+        
+    }
+    :deep(.el-tabs__content) {
+        padding-top: 10px;
     }
     
-
     .el-tab-pane {
         display: flex;
         flex-wrap: wrap;

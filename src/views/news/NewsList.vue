@@ -1,7 +1,7 @@
 <!-- 快讯列表 -->
 
 <script setup lang="ts">
-import SideHotCart from '@/components/SideHotCart.vue';
+import SideHotCart from '@/components/cart/SideHotCart.vue';
 import ButtonDecoration from '@/views/news/ButtonDecoration.vue';
 
 import {ref} from 'vue'

@@ -4,8 +4,6 @@ import {initialShowStore} from '@/stores'
 
 const viewportHeight = ref<number>(window.innerHeight);
  
-// handleClickBtn
-
 
 // 定时器与按钮是否可点击
 const num = ref<number>(5);
@@ -54,15 +52,16 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="message" :style="{minHeight: `${viewportHeight}px`}" v-if="initial.isMsgShow">
-    <div class="message-show">
-      <div class="message-show-title">特别通知！！！</div>
-      <p class="message-show-content">
-        本网站正马不停蹄开发中，因作者正忙于毕业，很多功能没有完善，并且服务器也是挂在国外，可能有一点卡，但功能及服务器肯定在未来一段内会解决。
+
+  <div class="initial" :style="{minHeight: `${viewportHeight}px`}" v-if="initial.isMsgShow">
+    <div class="initial-show">
+      <div class="initial-show-title">特别通知！！！</div>
+      <p class="initial-show-content">
+        本网站正马不停蹄开发中，因作者正忙于毕业，很多功能没有完善，并且服务器也是挂在国外，可能有一点卡，但功能及服务器肯定在未来一段内会解决。功能与后端马上上线，
         目前只支持在PC端访问
       </p>
       <el-button 
-        class="message-show-btn"
+        class="initial-show-btn"
         color="#00b98c"
         :disabled="isDisabled"
         @click="handleClickBtn"
@@ -72,11 +71,13 @@ onBeforeUnmount(() => {
     </div>
   </div>
 
+
   <router-view></router-view>
 </template>
 
 <style scoped lang="scss">
-.message {
+
+.initial {
   position: fixed;
   width: 100%;
   height: 100vh;

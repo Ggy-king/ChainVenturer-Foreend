@@ -2,9 +2,9 @@
 import { RouterView } from 'vue-router'
 import { ref, onMounted, onUnmounted } from 'vue';
 
-import NavBar from '@/components/NavBar.vue'
-import TipBar from '@/components/TipBar.vue'
-import FooterStatement from '@/components/FooterStatement.vue'
+import NavBar from '@/components/home/NavBar.vue'
+import TipBar from '@/components/home/TipBar.vue'
+import FooterStatement from '@/components/home/FooterStatement.vue'
 
 
 defineOptions({
@@ -86,18 +86,16 @@ onUnmounted(() => {
         right: 0;
         height: 50px;
         line-height: 50px;
-        // background-color: rgba(247, 208, 73,.9);
         opacity: .8;
-        
         transition: all .8s ease;
-        
       }
 
       
     .el-main {
       width: 1200px;
       margin: 100px auto 0;
-      padding: 14px 0;
+      padding: 0;
+      padding-bottom: 14px;
     }
     .el-footer {
       padding: 0;

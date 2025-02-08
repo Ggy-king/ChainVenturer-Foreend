@@ -1,7 +1,7 @@
 <!-- 发表评论 -->
 
 <script setup lang="ts">
-import UniversalHead from '@/components/UniversalHead.vue'
+import UniversalHead from '@/components/widgets/UniversalHead.vue'
 import IconGiveUp from '@/components/icons/IconGiveUp.vue'
 import { ref } from 'vue'
 const input = ref('')

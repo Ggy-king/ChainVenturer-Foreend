@@ -16,11 +16,15 @@ const viewportHeightCount = computed(() => {
 
 // 个性文字
 const textList = [
-    '机会无限的路，是无限的路创造的机会。你以为梦里的都会实现，连同这沾染着无限机会的路。',
-    '让梦想发光，实现与否已经不重要了，重要的是它已经亮起来了'
+    '生命是一团欲望，不能满足便痛苦，满足便无聊，人生就在痛苦与无聊之间摇摆',
+    '在这个物质至上的时代，我们用金钱丈量幸福，用消费填补空虚，却在堆积如山的物品中愈发感到生命的荒诞',
+    '在这个光怪陆离的世界里，我们都是带着假面的演员，只是有些人比其他人更早地忘记了自己原本的摸样',
+    '我们用谎言编织成网，将自己围在其中，却还以为那是通向自由的桥梁',
+    '我们用算法预测爱情，用数据量化成功，用效率压缩情感时，会不会在追逐最优解的路上，把灵魂也迭代掉了',
+    '人的面孔总是比人的嘴巴说出来的东西更多，更有趣。因为嘴巴说出来的是人的思想，而面孔说出来的却是思想的本质',
+    '在这个数字化的时代，我们的灵魂被切割成无数个像素点，在虚拟的海洋中漂泊，却始终找不到属于自己一片的陆地',
 ]
 
- 
 const fullText = ref<string>('');
 const displayedText = ref<string>('');
 const typingSpeed = ref<number>(180); // 稍微增加打字速度以模拟自然停顿
@@ -32,18 +36,16 @@ function getRandomInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min; // 生成[min, max)之间的随机数
 }
  
-const randomInt: number = getRandomInt(0, 1)
+const randomInt: number = getRandomInt(0, textList.length - 1)
 fullText.value = textList[randomInt]
 
 const typeText = () => {
-    
-
   if (displayedText.value.length < fullText.value.length) {
     displayedText.value += fullText.value[displayedText.value.length];
     setTimeout(() => typeText(), typingSpeed.value + Math.floor(Math.random() * 50)); // 增加随机延迟以模拟自然打字
   }
 };
- 
+
 const resetText = () => {
   displayedText.value = '';
   setTimeout(() => {
@@ -55,10 +57,7 @@ watch(fullText, () => {
   resetText();
 }, { immediate: true });
  
-
-// const containerRef = ref<HTMLDivElement | null>(null);
 const triangleRef = ref<HTMLDivElement | null>(null);
- 
 
 onMounted(() => {
   typeText();
@@ -233,6 +232,7 @@ onBeforeUnmount(() => {
   width: 300px;
   height: 300px;
   background-color: #e0f7fa;
+  opacity: .9;
   border-radius: 50%;
   transform-origin: 80px 400px; /* 设置旋转中心为容器中心减去圆的一半大小 */
   animation: rotateCircle 30s linear infinite alternate;

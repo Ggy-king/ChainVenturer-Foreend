@@ -1,161 +1,76 @@
 <!-- 标签式浏览内容页面 -->
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import cart1 from '@/assets/images/total-cart-1.jpg'
-import cart2 from '@/assets/images/total-cart-2.jpg'
-import cart3 from '@/assets/images/total-cart-3.jpg'
-import cart4 from '@/assets/images/total-cart-4.jpg'
-import cart5 from '@/assets/images/total-cart-5.jpg'
-import cart6 from '@/assets/images/total-cart-6.jpg'
 
+import { UrlStore } from '@/stores'
 
-// 第二种写法
+// 接受不一样的文章
 const props = withDefaults(defineProps<{
-  listIndex: number
+  essayList: Record<string,any>
+  essayType: string
 }>(),{
-  listIndex: 0
 })
 
+// 跳转文章
+const url = UrlStore()
+const handleToEssay = (id:string) => {
+    window.open(`${url.baseUrl}/essay/${id}`)
+//   router.push({name: 'essay',params: { id } })
+}
+
+// 设置标题块颜色
+const handleTopicColor = ( type: string ) => {
+  if (type === 'technology') {
+    return 'b2'
+  } else if (type === 'currency') {
+    return 'b3'
+  } else {
+    return 'b1'
+  }
+}
+// 设置不同标题块
+const essayTypeDisplay = (item: Record<string,any>) => {
+    if (props.essayType === 'technology') {
+      return item.technology
+    } else if (props.essayType === 'currency') {
+      return item.currency.join(" ")
+    } else {
+      return item.topic
+    }
+}
+// 设置时间格式
 
 const count = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 const load = () => {
   // count.value += 2
 }
 
-const list = [
-  [{
-    id: 1,
-    img: cart1,
-    title: '印度经济正在崩溃，这可能会让整个世界都崩溃',
-    introduce: '探索者汇报： 印度经济正在螺旋式上升。卢比正在像石头一样下沉，随之而来的是贸易赤字、资产转义大发大法师',
-    theme: '区块链',
-    date: '2024-12-26 20:45'
 
-  },
-  {
-    id: 2,
-    img: cart2,
-    title: '印度经济正在崩溃，这可能会让整个世界都崩溃',
-    introduce: '探索者汇报： 印度经济正在螺旋式上升。卢比正在像石头一样下沉，随之而来的是贸易赤字、资产转义大发大法师',
-    theme: '区块链',
-    date: '2024-12-26 20:45'
-
-  }],
-  [{
-    id: 3,
-    img: cart3,
-    title: '加密货币交易所代币克服了数字资产市场的低迷，在新的合并公告中飙升了近30%',
-    introduce: '探索者汇报： 一种加密货币交易所代币正在挑战本周整个市场的下跌趋势，飙升了近30%。在',
-    theme: 'Web3',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 4,
-    img: cart4,
-    title: '加密货币交易所代币克服了数字资产市场的低迷，在新的合并公告中飙升了近30%',
-    introduce: '探索者汇报： 一种加密货币交易所代币正在挑战本周整个市场的下跌趋势，飙升了近30%。在',
-    theme: 'Web3',
-    date: '2024-12-26 20:45'
-
-  }],
-  [{
-    id: 5,
-    img: cart2,
-    title: '摩根大通、美国银行、花旗集团和富国银行在创纪录的利润份额中巩固了对银行业的权力：报告',
-    introduce: '探索者汇报： 在经历了爆炸性的增长后，美国最大的银行即将锁定近十年来银行业利润的最大份',
-    theme: '政事',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 6,
-    img: cart2,
-    title: '摩根大通、美国银行、花旗集团和富国银行在创纪录的利润份额中巩固了对银行业的权力：报告',
-    introduce: '探索者汇报： 在经历了爆炸性的增长后，美国最大的银行即将锁定近十年来银行业利润的最大份',
-    theme: '政事',
-    date: '2024-12-26 20:45'
-
-  }],
-  [{
-    id: 7,
-    img: cart5,
-    title: '韩国人面临更高的比特币成本-最新加密货币新闻',
-    introduce: '探索者汇报： 最近的数据显示，韩国人为比特币支付的价格比美国买家高出约3%，主要是为了对冲',
-    theme: '精彩再现',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 8,
-    img: cart5,
-    title: '韩国人面临更高的比特币成本-最新加密货币新闻',
-    introduce: '探索者汇报： 最近的数据显示，韩国人为比特币支付的价格比美国买家高出约3%，主要是为了对冲',
-    theme: '精彩再现',
-    date: '2024-12-26 20:45'
-
-  }],
-  [{
-    id: 9,
-    img: cart3,
-    title: 'Chainlink价格预测：1月份LINK Eyes跃升至34美元',
-    introduce: '探索者汇报： 根据最新的价格预测，Chainlink（LINK）正在为1月份的新一轮飙升做准备，以从目',
-    theme: 'BTC',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 10,
-    img: cart3,
-    title: 'Chainlink价格预测：1月份LINK Eyes跃升至34美元',
-    introduce: '探索者汇报： 根据最新的价格预测，Chainlink（LINK）正在为1月份的新一轮飙升做准备，以从目',
-    theme: 'BTC',
-    date: '2024/12/26 20:45'
-
-  }],
-  [{
-    id: 11,
-    img: cart6,
-    title: '新Memecoin支持脑癌症研究-最新加密货币新闻',
-    introduce: '探索者汇报： 一位父亲希望为女儿罕见的脑癌症研究筹集资金，于是出现了一种新的模因币Pu',
-    theme: '科技',
-    date: '2024-12-26 20:45'
-
-  },
-  {
-    id: 12,
-    img: cart6,
-    title: '新Memecoin支持脑癌症研究-最新加密货币新闻',
-    introduce: '探索者汇报： 一位父亲希望为女儿罕见的脑癌症研究筹集资金，于是出现了一种新的模因币Pu',
-    theme: '科技',
-    date: '2024-12-26 20:45'
-
-  }],
-  
-
-]
 </script>
 
 <template>
     <ul v-infinite-scroll="load" class="infinite-list" style="overflow: auto">
-        <li v-for="i in list[props.listIndex]" :key="i.id" class="infinite-list-item">
+        <li v-for="i in props.essayList" :key="i.id" class="infinite-list-item">
             <div class="info-cart">
-              <img :src="i.img" alt="">
+              <img :src="i.imgPath" :alt="i.title" @click="handleToEssay(i._id)">
               <div class="info-cart-content">
-                <span class="title">{{ i.title }}</span>
-                <span class="introduce ellipsis">{{ i.introduce }}</span>
+                <span class="title" @click="handleToEssay(i._id)">{{ i.title }}</span>
+                <span class="introduce ellipsis">{{ i. summarize}}</span>
 
                 <div class="foot">
-                  <span class="foot-left"><b>{{ i.theme }}</b> · {{ i.date }}</span>
+
+                  <span class="foot-left">
+                    <b :class="handleTopicColor(props.essayType)">
+                      {{ essayTypeDisplay(i) }}
+                    </b><strong> · </strong>{{ i.put_time }}
+                  </span>
+
                   <span class="foot-right"> 
                     <span>
-                      <el-icon><View /></el-icon>325
+                      <el-icon><View /></el-icon> {{ i.view_num }}
                     </span>
 
-                    <span 
-                      style="cursor: pointer;"
-                    >
+                    <span style="cursor: pointer;">
                       <el-icon><Star /></el-icon>收藏
                     </span>
 
@@ -172,7 +87,6 @@ const list = [
 
 <style scoped lang="scss">
 .infinite-list {
-  height: 400px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -194,6 +108,7 @@ const list = [
     width: 200px;
     height: 130px;
     margin-right: 14px;
+    cursor: pointer;
   }
 
   .info-cart-content {
@@ -205,26 +120,50 @@ const list = [
     .title {
       font-size: 18px;
       font-weight: 600;
+      cursor: pointer;
     }
     .introduce {
       flex: 1;
-
       font-size: 14px;
       color: #59636D;
     }
     .foot {
+      display: flex;
+      justify-content: space-between;
       color: #89939E;
-      &-left b {
-        text-decoration: underline;
-        color: #e96868;
+      &-left {
+        display: flex;
+        align-items: center;
+        b {
+          display: inline-block;
+          padding: 2px 6px;
+          max-width: 152px;
+          text-align: center;
+        }
+        .b1 {
+          background-color: #f8ecec;
+          color: #e96868;
+        }
+        .b2 {
+          background-color: #f1f9f7;
+          color: #00b98c;
+        }
+        .b3 {
+          background-color: #f0f4ff;
+          color: #4378ff;
+        }
+        
+        strong {
+          
+          padding: 0 4px;
+        }
       }
       &-right {
-        float: right;
         display: flex;
         span {
           display: flex;
           align-items: center;
-          margin-left: 30px;
+          margin-left: 40px;
           .el-icon {
             font-size: 16px;
             margin-right: 4px;

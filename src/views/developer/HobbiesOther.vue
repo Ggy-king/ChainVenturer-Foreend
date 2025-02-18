@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { defineProps , withDefaults } from 'vue'
+
+// 接受图片链接
+const props = withDefaults(defineProps<{
+    urlList: string
+}>(),{
+    urlList: ''
+})
 
 </script>
 
@@ -38,8 +46,8 @@
                                 </p>
 
                                 <div style="display: flex;">
-                                    <img src="@/assets/images/developer-hobbies-1.jpg" alt="期货盈亏比" style="width: 100%;height: 100%;margin-right: 10px;">
-                                    <img src="@/assets/images/developer-hobbies-2.jpg" alt="期货排名" style="width: 100%;height: 100%;">
+                                    <img :src="props.urlList + '/hobbies-1.jpg'" alt="期货盈亏比" style="width: 100%;height: 100%;margin-right: 10px;">
+                                    <img :src="props.urlList + '/hobbies-2.jpg'" alt="期货排名" style="width: 100%;height: 100%;">
                                 </div>
                             </div>
                         </template>
@@ -64,10 +72,9 @@
                                     </p>
 
                                     <div style="display: flex;">
-                                        <img style="width: 70%;height: 100%;margin-right: 10px;" src="@/assets/images/developer-hobbies-3.jpg" alt="期货奖状" >
-                                        <img style="width: 140%;height: 100%;" src="@/assets/images/developer-hobbies-4.jpg" alt="期货奖状净值">
+                                        <img style="width: 70%;height: 100%;margin-right: 10px;" :src="props.urlList + '/hobbies-3.jpg'" alt="期货奖状" >
+                                        <img style="width: 140%;height: 100%;" :src="props.urlList + '/hobbies-3.jpg'" alt="期货奖状净值">
                                     </div>
-
                                 
                                 </div>
                             </template>
@@ -102,8 +109,8 @@
                                     </p>
 
                                     <div style="display: flex;">
-                                        <img style="width: 96%;height: 100%;margin-right: 10px;" src="@/assets/images/developer-hobbies-5.png" alt="代码展示">
-                                        <img style="width: 100%;height: 100%;" src="@/assets/images/developer-hobbies-6.jpg" alt="程序展示">
+                                        <img style="width: 96%;height: 100%;margin-right: 10px;" :src="props.urlList + '/hobbies-5.jpg'" alt="代码展示">
+                                        <img style="width: 100%;height: 100%;" :src="props.urlList + '/hobbies-6.jpg'" alt="程序展示">
                                     </div>
                                 </div>
                             </template>

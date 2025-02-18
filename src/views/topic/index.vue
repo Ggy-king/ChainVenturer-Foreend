@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SimpleBrowse from '@/components/cart/SimpleBrowse.vue';
-import TopicHeader from '@/views/topic/TopicHeader.vue';
-import TopicChunk from '@/views/topic/TopicChunk.vue';
+import TopicHeader from './TopicHeader.vue';
+import TopicChunk from './TopicChunk.vue';
 
 
 defineOptions({

@@ -22,7 +22,6 @@ const handleToEssay = async (id:string) => {
     route.query.topic ?
     res = await getTopicEssay(route.query.topic as string) : res = await getEssayOne(id)
     
-    
     essayList.value = res.data.data[0]
     essayList.value.currency = essayList.value.currency.join(" ")
 }

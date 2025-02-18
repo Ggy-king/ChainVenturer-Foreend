@@ -31,7 +31,7 @@ onMounted(() => {
     </header>
     
     <!-- 文章列表 -->
-    <ArticleList :list="list"/>
+    <ArticleList :list="list" :isModify="false"/>
 
 </template>
 

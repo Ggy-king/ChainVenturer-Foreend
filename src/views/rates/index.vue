@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import PersonalizedStatement from '@/components/cart/PersonalizedStatement.vue';
-import SideRates from '@/views/rates/SideRates.vue';
-import CurrencyConverter from '@/views/rates/CurrencyConverter.vue';
-import PopularRates from '@/views/rates/PopularRates.vue';
-import RecentQueries from '@/views/rates/RecentQueries.vue';
-import ForeignCurrency from '@/views/rates/ForeignCurrency.vue';
+import SideRates from './SideRates.vue';
+import CurrencyConverter from './CurrencyConverter.vue';
+import PopularRates from './PopularRates.vue';
+import RecentQueries from './RecentQueries.vue';
+import ForeignCurrency from './ForeignCurrency.vue';
 
 
 defineOptions({

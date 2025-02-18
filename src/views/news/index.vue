@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SimpleBrowse from '@/components/cart/SimpleBrowse.vue';
 import PersonalizedStatement from '@/components/cart/PersonalizedStatement.vue';
-import NewsList from '@/views/news/NewsList.vue';
+import NewsList from './NewsList.vue';
 
 defineOptions({
     name: 'NewsView'

@@ -23,6 +23,8 @@ const textList = [
     '我们用算法预测爱情，用数据量化成功，用效率压缩情感时，会不会在追逐最优解的路上，把灵魂也迭代掉了',
     '人的面孔总是比人的嘴巴说出来的东西更多，更有趣。因为嘴巴说出来的是人的思想，而面孔说出来的却是思想的本质',
     '在这个数字化的时代，我们的灵魂被切割成无数个像素点，在虚拟的海洋中漂泊，却始终找不到属于自己一片的陆地',
+    '很奇怪，我们不屑与他人为伍，却害怕自己与众不同',
+    '一束光照进铁塔，铁塔里的肮脏被显现出来，于是这道光变有了罪'
 ]
 
 const fullText = ref<string>('');
@@ -44,7 +46,7 @@ const typeText = () => {
     displayedText.value += fullText.value[displayedText.value.length];
     setTimeout(() => typeText(), typingSpeed.value + Math.floor(Math.random() * 50)); // 增加随机延迟以模拟自然打字
   }
-};
+}
 
 const resetText = () => {
   displayedText.value = '';
@@ -59,19 +61,19 @@ watch(fullText, () => {
  
 const triangleRef = ref<HTMLDivElement | null>(null);
 
+
 onMounted(() => {
   typeText();
   
-});
-
+})
 onBeforeUnmount(() => {
-});
+})
 
 </script>
 
 <template>
   <!-- 个性渲染 -->
-  <div class="personality">
+  <div class="personality" :style="{ height: (viewportHeightCount + 10) + 'px'}">
       <!-- 文字 -->
       <div class="box">
           <span v-for="(char, index) in displayedText" :key="index" class="char">{{ char }}</span>
@@ -86,20 +88,35 @@ onBeforeUnmount(() => {
 
       <!-- icon -->
       <div class="icon-link">
-        <el-tooltip
-          effect="dark"
-          content="微信"
+        
+        <el-popover
           placement="top"
+          trigger="click"
+          :offset="10"
         >
-          <span class="icon-m"><IconWeixin /></span>
-        </el-tooltip>
+          <template #reference>
+            <span>
+              <el-tooltip
+                effect="dark"
+                content="微信"
+                placement="top"
+              >
+                <span class="icon-m weixin"><IconWeixin /></span>
+              </el-tooltip>
+            </span>
+          </template>
+          <template #default>
+            <span style="font-size: 12px;">如果二维码失效，请您通过其他方式联系我</span>
+            <img style="width: 100%;margin-top: 6px" src="@/assets/images/weixin-friend.png" alt="微信">
+          </template>
+        </el-popover>
 
         <el-tooltip
           effect="dark"
           content="QQ"
           placement="top"
         >
-          <span class="icon-m"><IconQQ /></span>
+          <a href="tencent://AddContact/?fromId=XX&fromSubId=1&subcmd=all&uin=2998483320" target="_blank" class="icon-m"><IconQQ /></a>
         </el-tooltip>
 
         <el-tooltip
@@ -107,7 +124,7 @@ onBeforeUnmount(() => {
           content="邮件"
           placement="top"
         >
-          <span class="icon-m"><IconEmail /></span>
+          <a href="mailto:a18581897806@outlook.com?subject=您好，我是小高" class="icon-m"><IconEmail /></a>
         </el-tooltip>
 
         <el-tooltip
@@ -115,7 +132,7 @@ onBeforeUnmount(() => {
           content="Github"
           placement="top"
         >
-          <span class="icon-m"><IconGithub /></span>
+          <a href="https://www.github.com/ggy-king" target="_blank" class="icon-m"><IconGithub /></a>
         </el-tooltip>
         
       </div>
@@ -124,7 +141,9 @@ onBeforeUnmount(() => {
       <el-icon class="arrow"><DArrowLeft /></el-icon>
   </div>
   
-  <div class="show" :style="{height: viewportHeightCount + 'px'}"></div>
+  <div :style="{ height: viewportHeightCount + 'px'}">
+  
+  </div>
  
 </template>
 
@@ -137,10 +156,11 @@ onBeforeUnmount(() => {
 
 .personality{
   position: absolute;
-  top: 90px;
+  top: 80px;
   left: 0;
   right: 0;
   bottom: 0;
+
 
   display: flex;
   flex-direction: column;
@@ -157,54 +177,57 @@ onBeforeUnmount(() => {
   background-position: center;
 
   .box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        width: 1000px;
-        margin-top: -100px;
-  }
-  .icon-link {
     position: absolute;
-    bottom: 60px;
-    .icon-m {
-      margin: 10px;
-    }
-  }  
-  .char {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 1000px;
+    margin-top: -100px;
+    .char {
       opacity: 0;
       transform: translateX(0);
       transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
-
-  }
-    
-  .char-enter-active, .char-leave-active {
+    }
+      
+    .char-enter-active, .char-leave-active {
       transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .char-enter-from, .char-leave-to {
+    }
+    
+    .char-enter-from, .char-leave-to {
       opacity: 0;
       transform: translateX(-10px);
-  }
-  
-  .char-enter-to, .char-leave-from {
+    }
+    
+    .char-enter-to, .char-leave-from {
       opacity: 1;
       transform: translateX(0);
-  }
-  span {
+    }
+    span {
       display: inline-block;
       animation: fadeIn 0.5s ease-in-out forwards;
       animation-delay: .3s;
+    }
   }
 
+  .icon-link {
+    position: absolute;
+    bottom: 80px;
+
+    .icon-m {
+      margin: 10px;
+    }
+    .weixin {
+      cursor: pointer;
+    }
+  }  
+  
   .arrow {
     position: absolute;
-    bottom: 10px;
+    bottom: 16px;
     animation: arrowAn 1s ease infinite alternate;
   }
 }
-
-
  
 .triangle {
   position: absolute;

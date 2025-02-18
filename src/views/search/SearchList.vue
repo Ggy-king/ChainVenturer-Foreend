@@ -125,7 +125,7 @@ const newsList = props.newsList ? [] :  [
               <img :src="i.img" alt="">
               <div class="info-cart-content">
                 <span class="title">{{ i.title }}</span>
-                <span class="introduce ellipsis3">{{ i.introduce }}</span>
+                <span class="introduce ellipsis2">{{ i.introduce }}</span>
 
                 <div class="foot">
                   <span class="foot-left"><b>{{ i.type }}</b> · {{ i.date }}</span>
@@ -141,7 +141,7 @@ const newsList = props.newsList ? [] :  [
               <img :src="i.img" alt="">
               <div class="info-cart-content">
                 <span class="title">{{ i.title }}</span>
-                <span class="introduce ellipsis3">{{ i.introduce }}</span>
+                <span class="introduce ellipsis2">{{ i.introduce }}</span>
 
                 <div class="foot">
                   <span class="foot-left"><b>{{ i.type }}</b> · {{ i.date }}</span>
@@ -157,7 +157,7 @@ const newsList = props.newsList ? [] :  [
               <img :src="i.img" alt="">
               <div class="info-cart-content">
                 <span class="title">{{ i.title }}</span>
-                <span class="introduce ellipsis3">{{ i.introduce }}</span>
+                <span class="introduce ellipsis2">{{ i.introduce }}</span>
 
                 <div class="foot">
                   <span class="foot-left"><b>{{ i.type }}</b> · {{ i.date }}</span>
@@ -228,10 +228,10 @@ const newsList = props.newsList ? [] :  [
       font-weight: 600;
     }
     .introduce {
-      flex: 1;
+      height: 40px;
       margin: 5px 0;
-      font-size: 16px;
       color: #59636D;
+      overflow: hidden;
     }
     .foot {
       color: #89939E;

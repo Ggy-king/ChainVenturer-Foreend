@@ -43,7 +43,7 @@ onMounted(() => {
     <WriteSummary v-if="isShow" :essayFrom="essayList"/>
 
     <el-empty 
-      v-if="!isShow" 
+      v-else 
       style="--el-empty-padding: 40px 0 40px;"
       :image-size="600" 
       :image="noData"

@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import SideHotCart from '@/components/cart/SideHotCart.vue';
-import ButtonDecoration from '@/views/news/ButtonDecoration.vue';
+import ButtonDecoration from './ButtonDecoration.vue';
 
 import {ref} from 'vue'
 

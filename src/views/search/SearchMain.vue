@@ -100,9 +100,6 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
                 <el-tab-pane label="币种" name="fifth">
                     <SearchList :essaysList="[]" :topicsList="[]" :coinsList="[]"/>
                 </el-tab-pane>
-                <el-tab-pane name="fifth" />
-                <el-tab-pane name="fifth" />
-                
 
             </el-tabs>
         </div>
@@ -139,26 +136,37 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
     .el-tabs {
         width: 820px;
         margin-top: 20px;
-        :deep(.el-tabs__item) {
-            font-size: 16px;
-            font-weight: 600;
-            color: #4e5662;
-        &:hover {
-            color: #000;
+        :deep(.el-tabs__nav-scroll){
+            padding-right: 200px;
+            border-bottom: none;
+
+            .el-tabs__item {
+                font-size: 14px;
+                font-weight: 600;
+                color: #4e5662;
+                &:hover {
+                    color: #000;
+                }
+            }
+            .el-tabs__active-bar {
+                background-color: #f7d049;
+            }
+
+            .is-active {
+                color: #000;
+            }
         }
-        }
-        :deep(.el-tabs__active-bar){
-            background-color: #f7d049;
-        }
-        :deep(.is-active) {
-            color: #000;
+
+        :deep(.el-tabs__nav-wrap:after){
+            height: 1px;
         }
 
         :deep(.el-tabs__content) {
-            height: 2000px;
+            min-height: 800px;
         }
 
     }
+    
 }
 
 </style>

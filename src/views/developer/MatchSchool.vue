@@ -1,21 +1,22 @@
 <script setup lang="ts">
-import match1 from '@/assets/images/developer-match-1.jpg'
-import match2 from '@/assets/images/developer-match-2.jpg'
-import match3 from '@/assets/images/developer-match-3.png'
-import match4 from '@/assets/images/developer-match-4.png'
-import match5 from '@/assets/images/developer-match-5.png'
-import match6 from '@/assets/images/developer-match-6.png'
+import { defineProps , withDefaults,ref } from 'vue'
 
+// 接受图片链接
+const props = withDefaults(defineProps<{
+    urlList: string
+}>(),{
+    urlList: ''
+})
 
-const srcList =
-  [
-  match1,
-  match2,
-  match3,
-  match4,
-  match5,
-  match6,
-  ]
+const urlList = ref<string[]>([
+    props.urlList + '/match-1.jpg',
+    props.urlList + '/match-2.jpg',
+    props.urlList + '/match-3.png',
+    props.urlList + '/match-4.png',
+    props.urlList + '/match-5.png',
+    props.urlList + '/match-6.png',
+])
+
 
 
 
@@ -29,15 +30,15 @@ const srcList =
             <div class="match-info">虽然不值一提，但还是喜欢记录一下(Although it's not worth mentioning, I still like to record it)</div>
             <div class="match-img">
                 <el-image
-                    v-for="i in srcList" 
+                    v-for="i in urlList" 
                     :key="i"
                     style="width: 150px; height: 150px;margin-left: 10px;"
                     :src="i"
                     :zoom-rate="1.2"
                     :max-scale="7"
                     :min-scale="0.2"
-                    :preview-src-list="srcList"
-                    :initial-index="srcList.indexOf(i)"
+                    :preview-src-list="urlList"
+                    :initial-index="urlList.indexOf(i)"
                     fit="cover"
                 />
             </div>

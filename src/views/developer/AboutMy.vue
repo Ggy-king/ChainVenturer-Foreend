@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import IconGithub from '@/components/icons/IconGithub.vue';
+import IconGithub from '@/components/icons/IconGithub.vue'
+import { defineProps , withDefaults } from 'vue'
+
+// 接受图片链接
+const props = withDefaults(defineProps<{
+    urlList: string,
+}>(),{
+    urlList: ''
+})
+
 
 // 跳转
 const handlePathTo = ( url:string ) :void => {
@@ -33,7 +42,7 @@ const handlePathTo = ( url:string ) :void => {
             </div>
         </div>
         <el-card class="about-image" >
-            <img src="@/assets/images/developer-img.png" alt="我的学习记录及项目集成">
+            <img :src="props.urlList + '/img.png'" alt="我的学习记录及项目集成">
         </el-card>
     </div>
 </template>

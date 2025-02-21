@@ -160,6 +160,7 @@ const verification = ref('')
                     show-password
                     :prefix-icon="Lock"
                     oninput="value = value.replace(/[^\w]/g,'')"
+                    @keyup.enter="handleSubmit"
 
                   />
                   <span class="forget" @click="hooks.message('请您联系我吧，服务人数太少懒得做了','info')">忘记密码?</span>

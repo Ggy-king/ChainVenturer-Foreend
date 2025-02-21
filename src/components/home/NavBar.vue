@@ -108,7 +108,7 @@ const handleLogin = () => {
   loginStore.changeLoginVisible(true)
 }
 const handleLoginOut = () => {
-  hooks.confirm('您确定要退出账户吗？','登出')
+  hooks.confirm('您确定要退出账户吗？','链界探索者提示您：')
   .then(() => {
     loginStore.removeToken()
     loginStore.removeUser()

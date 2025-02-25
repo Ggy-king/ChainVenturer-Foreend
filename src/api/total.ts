@@ -5,19 +5,20 @@ import request from '@/utils/request.ts'
 
 
 // 获取轮播图数据
-
-
-// 获取标签页不同内容的数据(6组)
-// 先测试一组
-
-export const getTabsDate = () => {
-    return request.get('/users')
+export const getCarouselImg = () => {
+    return request.get('/total/carousel')
 }
 
-export const postTabsDate = () => {
-    return request.post('/users',{
-        username: 'admin',
-        password: '123456'
+
+// 获取标签页不同内容的数据
+export const getVariousEssay = (type:string,value:string) => {
+    if(type === 'hot') return request.get('/total/hot')
+    return request.get('/total',{
+        params: { [type]: value }
     })
 }
+
+
+
+
 

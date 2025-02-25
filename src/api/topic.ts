@@ -1,3 +1,4 @@
+// 封装专题axios请求
 import request from '@/utils/request'
 
 // 获取专题数据

@@ -111,16 +111,14 @@ const checkImgChange: UploadProps['onChange'] = (uploadFile,uploadFiles) => {
   } else {
     hooks.message('图片符合要求，添加成功！准备上传...',"success")
   }
-
 }
 const handleExceed: UploadProps['onExceed'] = (files, uploadFiles) => {
     hooks.message('只能上传一张图片作为封面！',"warning")
 }
-const handleImgUpload = async () => {
+const handleImgUpload = () => {
   if(ruleForm.imgFile[0].status === 'success') return
-  await uploadRef.value!.submit()
+  uploadRef.value!.submit() 
 }
-
 
 // ------------文章创作相关
 const writeContentStore = writeStore()
@@ -220,8 +218,11 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       // 主要逻辑
       const formObj = fromObjCreate(formEl)
       handleImgUpload()
-      const timeoutId = setTimeout(() => {
-        postWriteAll(formObj,formEl)
+      const timeoutId = setInterval(() => {
+        if(ruleForm.imgFile[0].status === 'success') {
+          postWriteAll(formObj,formEl)
+          clearInterval(timeoutId)
+        }
       }, 1000)
 
       timeoutIds.value.push(timeoutId)

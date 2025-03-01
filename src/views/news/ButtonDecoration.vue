@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-const emit = defineEmits(['changeBtn'])  // 接受父组件中定义的时间
+const emit = defineEmits(['changeBtn'])  // 接受父组件中定义的事件
 const handleClickBtn = (num:number) => {
   emit('changeBtn',num)
 }
@@ -12,9 +12,9 @@ const handleClickBtn = (num:number) => {
   <!-- 大按钮 -->
   <div class="social-btn">
     <a class="btn bu-one" href="#"><strong class="fa" @click="handleClickBtn(1)">最新</strong></a>
-    <a class="btn bu-two" href="#"><strong class="fa" @click="handleClickBtn(2)">最热</strong></a>
-    <a class="btn bu-three" href="#"><strong class="fa" @click="handleClickBtn(3)">精选</strong></a>
-    <a class="btn bu-four" href="#"><strong class="fa" @click="handleClickBtn(4)">小众</strong></a>
+    <a class="btn bu-two" href="#"><strong class="fa" @click="handleClickBtn(2)">领域</strong></a>
+    <a class="btn bu-three" href="#"><strong class="fa" @click="handleClickBtn(3)">金融</strong></a>
+    <a class="btn bu-four" href="#"><strong class="fa" @click="handleClickBtn(4)">技术</strong></a>
   </div>
 
 </template>

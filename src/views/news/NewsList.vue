@@ -1,52 +1,41 @@
 <!-- 快讯列表 -->
 
 <script setup lang="ts">
-import SideHotCart from '@/components/cart/SideHotCart.vue';
-import ButtonDecoration from './ButtonDecoration.vue';
+import ButtonDecoration from './ButtonDecoration.vue'
+import SideHotCart from '@/components/cart/SideHotCart.vue'
 
-import {ref} from 'vue'
+import { ref,onMounted } from 'vue'
+import noData from '@/assets/images/no-data.png'
 
 import { CaretRight } from '@element-plus/icons-vue'
+import { getNewsDate } from '@/api/news'
+import hooks from '@/utils/hooks'
 
+// 进度条
 const format:(n:number) => void = (percentage) => (percentage === 100 ? 'Full' : `${percentage}%`)
 
-const activities = [
-  {
-    content: 'Event start',
-    timestamp: '2018-04-15',
-  },
-  {
-    content: 'Approved',
-    timestamp: '2018-04-13',
+// 获取快讯新闻
+const newsList = ref<Record<string,any>>([])
+const newsShow = ref<boolean>(false)
 
-  },
-  {
-    content: 'Success',
-    timestamp: '2018-04-11',
-  },
-  {
-    content: 'Success',
-    timestamp: '2018-04-11',
-  },
-  {
-    content: 'Success',
-    timestamp: '2018-04-11',
-  },
-  {
-    content: 'Success',
-    timestamp: '2018-04-11',
-  },
+const getNewsList = async(type:string) => {
+    try {
+        const res = await getNewsDate(type)
+        if(res.data.code === '3002') hooks.message('服务端错误，请联系开发者或刷新','error')
+        if(res.data.code === '3000') {
+            newsList.value = res.data.data
+            newsShow.value = true
+        }
+        
+    } catch (error) {
+        hooks.message('快讯内容获取失败，请等待重试','error')
+    }
+}
 
-  {
-    content: 'Success',
-    timestamp: '2018-04-11',
-  },
-   {
-    content: 'Success',
-    timestamp: '2018-04-11',
-  },
-
-]
+onMounted(() => {
+    getNewsList('last')
+    
+})
 
 // 切换小标签背景色
 const bgcColor = ref<string>('#3d5b99')
@@ -57,26 +46,35 @@ const switchBgcColor = (num:number) => {
         case 1:
             bgcColor.value = '#3d5b99'
             text.value = '最新'
+            getNewsList('last')
             break;
         case 2:
             bgcColor.value = '#dc4c3a'
-            text.value = '最热'
+            text.value = '领域'
+            getNewsList('topic')
             break;
         case 3:
             bgcColor.value = '#03b0f0'
-            text.value = '精选'
+            text.value = '金融'
+            getNewsList('currency')
             break;
         case 4:
             bgcColor.value = '#c003ff'
-            text.value = '小众'
+            text.value = '技术'
+            getNewsList('technology')
             break;
     }
 }
 
+// 日期
+const year = new Date().getFullYear()
+const month = new Date().getMonth() + 1
+const day = new Date().getDate()
+
 </script>
 
 <template>
-    <div class="news">
+    <div class="news" v-if="newsShow">
         <!-- 快讯头部 -->
         <div class="news-head">
             <ButtonDecoration @changeBtn="switchBgcColor"></ButtonDecoration>
@@ -84,7 +82,9 @@ const switchBgcColor = (num:number) => {
 
 
         <div class="news-main">
-            <div class="date">123456</div>
+            <div class="date">链接探索者独家汇报
+                <span>{{ year }} - {{ month }} - {{ day }}</span>
+            </div>
 
             <!-- 小进度条 -->
             <el-progress
@@ -94,7 +94,6 @@ const switchBgcColor = (num:number) => {
                 :duration="15"
                 :stroke-width="2"
                 :text-inside="true"
-
                 :format="format"
                 >
                 <span></span>
@@ -102,25 +101,28 @@ const switchBgcColor = (num:number) => {
 
             <!-- 时间线展示 -->
             <el-timeline>
+
                 <el-timeline-item
-                    v-for="(activity, index) in activities"
+                    v-for="(i,index) in newsList"
                     :key="index"
-                    :timestamp="activity.timestamp"
+                    :timestamp="i.put_time"
                     :icon="CaretRight"
                     color="#000"
                     hide-timestamp
                     >
                     <div class="news-title">
-                        <i :style="{backgroundColor: bgcColor}">{{ text }}</i>港股上市公司裕兴科技：近期出售约630万枚USDT并购买78.2枚BTC
+                        <i :style="{backgroundColor: bgcColor}">{{ text }}</i>{{ i.title }}
                     </div>
                     <el-card class="news-main">
-                        <p>港股上市公司裕兴科技发布公告宣布，已于2024年7月25日至2024年12月31日期间在公开市场上进行了一系列交易，包括： (
-                            i)购买约78.2单位比特币，每单位的平均价格为80,960美元，代价总额约630万美元(不包括交易成本) 
-                            (ii)出售约630万单位USDT，每单位的平均价格为1美元，价值总额约630万美元(不包括交易成本)
-                            ，出售事项下出售的USDT均用于转换为比特币购买事项下等值的比特币。</p>
+                        <p>{{ i.summarize }}</p>
                     </el-card>
-                    <div class="news-date">Tom committed 2018/4/12 20:46</div>
+                    <div class="news-date">
+                        <el-icon><Clock /></el-icon>
+                        <span>{{ i.put_time }}</span>
+                        <span :style="{color: bgcColor}">{{ i.topic || i.currency?.join(" ") || i.technology || '链界实时快报' }}</span>
+                    </div>
                 </el-timeline-item>
+
             </el-timeline>
         </div>
 
@@ -131,22 +133,38 @@ const switchBgcColor = (num:number) => {
             <SideHotCart title="最火币种"/>
         </div>
     </div>
+
+    <el-empty 
+      v-else 
+      style="--el-empty-padding: 40px 0 40px;"
+      :image-size="600" 
+      :image="noData"
+      description="数据跑丢了，或者是您探索到了未知秘密"
+    />
 </template>
 
 <style scoped lang="scss">
 .news {
     position: relative;
     width: 820px;
+    min-height: 1500px;
     &-head {
-        padding:10px 0;
+        padding-bottom: 20px;
         background-color: #fff;
         border-radius: 20px;
-       
-        
     }
     &-main {
+        .date {
+            color: #ffd700;
+            font-style: italic;
+            text-indent: 1em;
+            
+            span {
+                float: right;
+            }
+        }
         .el-progress {
-            margin: 20px 0;
+            margin: 4px 0 20px;
         }
         .el-timeline {
             margin-left: 4px;
@@ -164,9 +182,30 @@ const switchBgcColor = (num:number) => {
             }
             .news-main {
                 margin: 10px 0;
+                line-height: 26px;
+                letter-spacing: .5px;
+                color: #59636D;
             }
             .news-date{
+                display: flex;
+                justify-content: start;
+                align-items: center;
                 margin-bottom: 20px;
+                :first-child {
+                    color: #ffd700;
+                    font-size: 18px;
+                }
+                :nth-child(2) {
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    font-size: 12px;
+                }
+                span:last-child {
+                    padding: 0 10px;
+                    font-weight: 600;
+                    background-color: #eff2f5;
+                }
+
             }
 
         }

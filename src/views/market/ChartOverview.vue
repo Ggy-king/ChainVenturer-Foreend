@@ -1,9 +1,6 @@
 <!-- 图表总览 -->
 
 <script setup lang="ts">
-
-const sectorList = [1,2,3,4,5,6,7,8,9,10,11,12]
-
 import {ref,reactive,onMounted} from 'vue';
 
 import * as echarts from 'echarts/core';
@@ -58,7 +55,7 @@ const option: EChartsOption = reactive({
     axisLabel: {
         interval: 0
     },
-    data: ['-60%以上','-60%','-40%', '-30%', '-20%', '-10%', '-5%','5%', '10%', '20%','30%','40%','60%','60%以上']
+    data: ['-2%以上','-2%', '-1.5%', '-1%', '-0.5%', '-0.2%','-0.1%','0.2%','0.5%', '1%', '1.5%','2%','2.5%','2.5%以上']
   },
   yAxis: {
     type: 'value'
@@ -76,7 +73,7 @@ const option: EChartsOption = reactive({
         show: true,
         position: 'top'
       },
-      data: [7, 16, 46, 65, 197, 110, 458,'-','-','-','-','-','-','-']
+      data: [2, 1, 2, 3, 13, 5, 11,'-','-','-','-','-','-','-']
     },
     {
       name: '上涨数量',
@@ -89,7 +86,7 @@ const option: EChartsOption = reactive({
         show: true,
         position: 'top'
       },
-      data: ['-','-','-','-','-','-','-',564, 224, 46, 22, 150, 17, 26]
+      data: ['-','-','-','-','-','-','-',13,7, 13, 5, 4, 1, 2]
     },
   ]
 });
@@ -100,6 +97,110 @@ const initChart = () => {
 
     myChart.setOption(option)
 }
+const sectorList = [
+    {
+        plate: '工业品',
+        funds: '2063.49 亿',
+        increase: -0.04,
+        view: '196'
+    },
+    {
+        plate: '农产品',
+        funds: '817.66 亿',
+        increase: 0.73,
+        view: '89'
+    },
+    {
+        plate: '贵金属',
+        funds: '767.16 亿',
+        increase: -0.47,
+        view: '91'
+    },
+    {
+        plate: '石油板块',
+        funds: '140.90 亿',
+        increase: -0.95,
+        view: '21'
+    },
+    {
+        plate: '化工板块',
+        funds: '570.27 亿',
+        increase: 0.54,
+        view: '77'
+    },
+    {
+        plate: '有色板块',
+        funds: '601.55 亿',
+        increase: -0.52,
+        view: '80'
+    },
+    {
+        plate: '建材板块',
+        funds: '210.50 亿',
+        increase: 0.53,
+        view: '30'
+    },
+    {
+        plate: '钢铁板块',
+        funds: '354.37 亿',
+        increase: -0.09,
+        view: '42'
+    },
+    {
+        plate: '煤炭板块',
+        funds: '106.35 亿',
+        increase: 0.79,
+        view: '24'
+    },
+    {
+        plate: '钛合金',
+        funds: '49.20 亿',
+        increase: -0.36,
+        view: '9'
+    },
+    {
+        plate: '黑链指数',
+        funds: '509.92 亿',
+        increase: 0.14,
+        view: '71'
+    },
+    {
+        plate: '塑化链',
+        funds: '108.92 亿',
+        increase: 0.62,
+        view: '18'
+    },
+    {
+        plate: '聚酯链',
+        funds: '107.25 亿',
+        increase: -0.18,
+        view: '19'
+    },
+    {
+        plate: '谷物板块',
+        funds: '88.82 亿',
+        increase: 1.95,
+        view: '24'
+    },
+    {
+        plate: '油脂板块',
+        funds: '245.39 亿',
+        increase: 0.42,
+        view: '37'
+    },
+    {
+        plate: '饲料板块',
+        funds: '306.22 亿',
+        increase: 1.33,
+        view: '50'
+    },
+    {
+        plate: '软商板块',
+        funds: '121.57 亿',
+        increase: -0.12,
+        view: '18'
+    }
+]
 
 onMounted(() => {
     initChart()
@@ -109,30 +210,27 @@ onMounted(() => {
 
 <template>
     <div class="chart">
-
-        <div class="title">热门板块</div>
+        <div class="title">热门板块 <span>(对不起各位客官，小生的经费实在有限，这个行情页面的数据api就不做了，太烧钱了。每天更新一次吧)</span></div>
         <div class="sector">
             <ul class="sector-main">
-                <li v-for="i in sectorList" :key="i">
+                <li v-for="i in sectorList" :key="i.plate">
                     <el-card>
-                        <div>区块链</div>
-                        <div>6587.4亿</div>
-                        <div>+4.73% &nbsp;&nbsp;<span>46万人讨论</span></div>
+                        <div>{{ i.plate }}</div>
+                        <div :style="{color: i.increase > 0 ? '#f23f58' : '#00b98c'}">{{ i.funds }}</div>
+                        <div :style="{color: i.increase > 0 ? '#f23f58' : '#00b98c'}">{{ i.increase < 0 ? i.increase : '+' + i.increase}}% &nbsp;&nbsp;<span>{{ i.view }}万人讨论</span></div>
                     </el-card>
                 </li>
             </ul>
-        </div>
-
+        </div>  
         <!-- 标题 -->
-        <div class="title">市场总览</div>
-
+        <div class="title">期货市场总览</div>
         <div class="market-chart">
             <el-card>
                 <div class="market-whole" ref="chartContainer"></div>
             </el-card>
             <el-card class="market-rate">
                 <div class="rate-title">大盘评级</div>
-                <el-progress type="dashboard" :percentage="76" color="#00b98c" :width="150" :stroke-width="8">
+                <el-progress type="dashboard" :percentage="81" color="#f23f58" :width="150" :stroke-width="8">
                     <template #default="{ percentage }">
                         <span class="percentage-value">{{ percentage }}分</span>
                         <span class="percentage-label">注意风险</span>
@@ -144,8 +242,6 @@ onMounted(() => {
                 </div>
             </el-card>
         </div>
-        
-
     </div>
 </template>
 
@@ -157,6 +253,10 @@ onMounted(() => {
         font-size: 16px;
         font-weight: 600;
         margin-bottom: 10px;
+        span {
+            font-size: 14px;
+            color: #89939e;
+        }
     }
     .sector {
         
@@ -169,8 +269,7 @@ onMounted(() => {
                 text-align: center;
                 margin-left: 12px;
                 margin-bottom: 10px;
-                div:first-child {
-                }
+
                 div:nth-child(2) {
                     font-size: 20px;
                     color: #f23f58;
@@ -204,9 +303,7 @@ onMounted(() => {
             height: 370px;
             .market-whole {
             height: 370px;
-        }
-            
-            // background-color: #ebeff0;
+            }
         }
         .market-rate {
             width: 260px;
@@ -229,7 +326,7 @@ onMounted(() => {
                 display: block;
                 margin-top: 10px;
                 font-size: 32px;
-                color: #00b98c;
+                color: #f23f58;
             }
             .percentage-label {
                 display: block;

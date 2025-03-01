@@ -8,6 +8,9 @@ import type { TabsPaneContext } from 'element-plus'
 import type { Ref } from 'vue'
 
 import { getPersonArticle } from '@/api/articles'
+import { getCollectEssay } from '@/api/essay'
+
+import noData from '@/assets/images/no-data.png'
 
 defineOptions({
     name: 'PersonCenter'
@@ -18,23 +21,33 @@ const index: Ref<number> = ref(0)
 
 const activeName = ref('first')
 const handleClick = (tab: TabsPaneContext, event: Event) => {
-  // console.log(tab, event)
-  index.value = Number(tab.index)
+//   index.value = Number(tab.index)
+    console.log(tab.index);
+    if(tab.index === '1') {
+        handleCollectList()
+    }
 }
 
 // -----------个人中心和用户设置切换
 const route = useRoute()
 
 // 渲染用户个人文章
-const list = ref<any>([])
+const personList = ref<any>([])
 const handleArticlesList = async () => {
   const res = await getPersonArticle()
-  list.value = res.data.data 
+  personList.value = res.data.data 
 }
 const handleDeleteCurrent = (payload:{ listIndex: number}) => {
-    list.value.splice(payload.listIndex,1)
+    personList.value.splice(payload.listIndex,1)
 }
 
+
+// 渲染用户收藏文章
+const collectList = ref<any>([])
+const handleCollectList = async () => {
+    const res = await getCollectEssay()
+    collectList.value = res.data.data
+}
 
 onMounted(() => {
     handleArticlesList()
@@ -52,17 +65,35 @@ onMounted(() => {
         >
             <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
                 <el-tab-pane label="已发布文章" name="first" :lazy="true">
-                    <ArticleList 
-                        :list="list" 
+                    <ArticleList
+                        v-if="personList.length"
+                        :list="personList" 
                         :isModify="true" 
                         @update-essay="handleDeleteCurrent" 
+                    />
+                    <el-empty 
+                        v-else 
+                        style="--el-empty-padding: 40px 0 40px;"
+                        :image-size="500" 
+                        :image="noData"
+                        description="您没有发布过文章哦，请去创作一篇吧！"
                     />
                 </el-tab-pane>
 
                 <el-tab-pane label="个人收藏" name="second" >
-                    后续完善2
-
+                    <ArticleList
+                        v-if="collectList.length"
+                        :list="collectList" 
+                    />
+                    <el-empty 
+                        v-else 
+                        style="--el-empty-padding: 40px 0 40px;"
+                        :image-size="500" 
+                        :image="noData"
+                        description="您还没有收藏呢，快快去收藏宝贝吧！"
+                    />
                 </el-tab-pane>
+
             </el-tabs>
         </div>
 
@@ -87,7 +118,6 @@ onMounted(() => {
 .person {
     .el-tabs {
         width: 820px;
-        margin-top: 20px;
         :deep(.el-tabs__item) {
             font-size: 16px;
             font-weight: 600;

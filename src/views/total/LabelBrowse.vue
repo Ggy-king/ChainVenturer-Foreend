@@ -2,7 +2,10 @@
 
 <script setup lang="ts">
 
-import { UrlStore } from '@/stores'
+import { UrlStore, userFromStore } from '@/stores'
+import hooks  from '@/utils/hooks'
+
+import { putCollectEssay } from '@/api/essay'
 
 // 接受不一样的文章
 const props = withDefaults(defineProps<{
@@ -40,6 +43,29 @@ const essayTypeDisplay = (item: Record<string,any>) => {
 }
 // 设置时间格式
 
+// 文章收藏
+const handleCollectEssay = async (id:string) => {
+  try {
+    const res = await putCollectEssay(id)
+    if(res.data.code === '2007') {
+      hooks.message('您还没有登录呢，请您登录一下吧','warning')
+      const loginStore = userFromStore()
+      loginStore.changeLoginVisible(true)
+    } else if(res.data.data === 0) {
+      hooks.message('收藏成功！去个人中心查看吧！','success')
+    } else if(res.data.data === 1){
+      hooks.message('取消收藏成功！','success')
+
+    } else {
+      hooks.message('服务端错误！','error')
+
+    }
+  } catch (error) {
+    hooks.message('系统错误','error')
+  }
+}
+
+
 const count = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 const load = () => {
   // count.value += 2
@@ -70,7 +96,10 @@ const load = () => {
                       <el-icon><View /></el-icon> {{ i.view_num }}
                     </span>
 
-                    <span style="cursor: pointer;">
+                    <span 
+                      style="cursor: pointer;"
+                      @click="handleCollectEssay(i._id)"
+                    >
                       <el-icon><Star /></el-icon>收藏
                     </span>
 

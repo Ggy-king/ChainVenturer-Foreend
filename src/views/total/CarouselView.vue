@@ -2,6 +2,7 @@
 import { onMounted , ref } from 'vue';
 
 import { getCarouselImg } from '@/api/total'
+import { UrlStore } from '@/stores'
 
 interface ImgObject {
   _id: string,
@@ -14,13 +15,17 @@ const getCarouseDate = async () => {
   try {
     const res = await getCarouselImg()
     imgPath.value = res.data.data
-    console.log(imgPath.value[0].imgPath)
-    
     
   } catch (error) {
-    console.log('错误');
-    
+    console.log('错误')
   }
+}
+
+// 跳转文章
+const url = UrlStore()
+const handleToEssay = (id:string) => {
+    window.open(`${url.baseUrl}/essay/${id}`)
+//   router.push({name: 'essay',params: { id } })
 }
 
 onMounted(() => {
@@ -33,15 +38,15 @@ onMounted(() => {
   <!-- 轮播图 -->
   <div class="block text-center">
     <el-carousel height="260px" :motion-blur="true">
-      <el-carousel-item v-for="item in imgPath" :key="item._id">
+      <el-carousel-item v-for="i in imgPath" :key="i._id">
         <!-- <h3 class="small justify-center" text="2xl">
           {{ item.title }}
         </h3> -->
         <img 
-          :src="item.imgPath" 
-          :alt="item.title" 
-          :title="item.title"
-          @click=""
+          :src="i.imgPath" 
+          :alt="i.title" 
+          :title="i.title"
+          @click="handleToEssay(i._id)"
         >
       </el-carousel-item>
     </el-carousel>
@@ -50,8 +55,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .el-carousel {
-  margin: 14px 0;
-
+  margin: 14px 6px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
   .el-carousel__arrow {  
     color: pink;
   }

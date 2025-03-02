@@ -1,22 +1,44 @@
 <!-- 专题卡片 -->
 
 <script setup lang="ts">
+import UniversalHead from '@/components/widgets/UniversalHead.vue'
+import { ref,onMounted } from 'vue'
 
+import { UrlStore } from "@/stores"
+import { getTopicData } from '@/api/total'
+import { getEssayOne } from '@/api/essay'
+
+// 获取数据
+const topicList = ref<Record<string,any>>({})
+const getTopicList = async () => {
+  try {
+    const res = await getTopicData()
+    topicList.value = res.data.data[0]
+  } catch (error) {
+  }
+}
+
+// 跳转专题
+const url = UrlStore()
+const handleToTopic = (id:string) => {
+  window.open(`${url.baseUrl}/essay?topic=${id}`)
+//   router.push({name: 'essay',params: { id } })
+}
+
+onMounted(() => {
+  getTopicList()
+})
 </script>
 
 <template>
   <div class="topic">
     
-    <div class="topic-header">
-      <div>热议专题</div>
-      <a href="#"><span>更多</span><el-icon><ArrowRight/></el-icon></a>
-    </div>
+    <UniversalHead title="热议专题"/>
 
-
-    <div class="topic-main">
-      <img src="https://www.528btc.com/d/file/20241227/1735270197172779.jpg" alt="">
+    <div class="topic-main" @click="handleToTopic(topicList._id)">
+      <img :src="topicList.imgPath" :alt="topicList.title">
       <div class="upper-info"></div>
-      <div class="upper-info-title">美国失业率引发比特币波动，比特币全球储备化已成常态</div>
+      <div class="upper-info-title">{{ topicList.title }}</div>
     </div>
   </div>
 </template>
@@ -51,6 +73,7 @@
     height: 200px;
     border-radius: 8px;
     overflow: hidden;
+    cursor: pointer;
     img {
       width: 100%;
       height: 100%;

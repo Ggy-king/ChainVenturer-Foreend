@@ -80,10 +80,7 @@ onMounted(() => {
   <!-- 标签页 主体内容 -->
   <el-tabs v-model="activeName" @tab-click="handleTabClick" stretch>
     <el-tab-pane label="最热" name="first">
-      <LabelBrowse 
-        :essayList="essayList" 
-        :essayType="essayType"
-       />
+      <LabelBrowse :essayList="essayList" :essayType="essayType" />
       <VariousBtn @message-more-essay="handleMoreEssay"/>
     </el-tab-pane>
 

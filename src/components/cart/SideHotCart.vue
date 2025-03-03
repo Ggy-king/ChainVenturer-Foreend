@@ -20,7 +20,7 @@ const hotList = [
     {
         name:'Ethereum',
         info:'ETH以太坊',
-        price:'24,712.66',
+        price:'6',
         rate:'-1.104%',
     },
     {

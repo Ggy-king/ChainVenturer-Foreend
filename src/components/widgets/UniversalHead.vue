@@ -1,6 +1,7 @@
 <!-- 最顶部风险提示 -->
 <script setup lang="ts">
-import {ref} from 'vue'
+import { useRouter } from 'vue-router';
+
 
 // 实现父 -> 子 标题更新
 // 定义props类型
@@ -14,14 +15,39 @@ const props = withDefaults(defineProps<Props>(),{
     isMore: true
 })
 
+// 跳转页面
+const router = useRouter()
+const handleToOtherView = (view:string) => {
+  switch (view) {
+    case '热议专题':
+      router.push({name: 'topic'})
+      break;
 
+    case '最新资讯':
+      router.push({name: 'news'})
+      break;
+
+    case '热门文章':
+      router.push({name: 'articles'})
+      break;
+
+    case '最火币种':
+      router.push({name: 'market'})
+      break;
+
+  
+    default:
+      break;
+  }
+  
+}
 
 </script>
 
 <template>
   <div class="topic-header">
       <div>{{ title }}</div>
-      <a href="#" v-if="isMore"><span>更多</span><el-icon><ArrowRight/></el-icon></a>
+      <a @click="handleToOtherView(title)" v-if="isMore"><span class="more">更多</span><el-icon><ArrowRight/></el-icon></a>
     </div>
 </template>
 
@@ -43,6 +69,7 @@ const props = withDefaults(defineProps<Props>(),{
       color: #f0b90b;
       display: flex;
       align-items: center;
+      cursor: pointer;
       span {
         margin-right: 4px;
       }

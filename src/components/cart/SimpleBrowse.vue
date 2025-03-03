@@ -1,96 +1,45 @@
 <!-- 简洁浏览   -->
 
 <script setup lang="ts">
-import bo from '@/assets/images/btc-icon.webp'
+import hooks from '@/utils/hooks'
+import {  ref } from 'vue'
 
+import { getContractSimple } from '@/api/market'
+import { onMounted } from 'vue'
 
-const list =[
-    {
-        id: 1,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 2,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 3,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 4,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 5,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 6,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 7,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 8,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 9,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
-    {
-        id: 10,
-        img: bo,
-        name:'BTC',
-        price:'$95942.00',
-        increase:'1.93%'
-    },
+const browseList = ref<Record<string,any>>([])
+const browseShow = ref<boolean>(false)
+const getContractList = async () => {
+  try {
+    const res = await getContractSimple()
+    if(res.data.code === '3002') browseShow.value = false
+    if(res.data.code === '3000') {
+        browseList.value = res.data.data
+        browseShow.value = true
+        
+    }
+  } catch (error) {
+    hooks.message('行情数据获取出现问题，请您等待后重新尝试','error')
+  }
+}
 
-    
+onMounted(() => {
+  getContractList()
+})
 
-]
 </script>
 
 <template>
-    <div class="browsing">
+    <div class="browsing" v-if="browseShow">
       <ul class="browsing-roll roll-anima">
-            <li v-for="i in list" :key="i.id">
-                <a href="">
-                    <img :src="i.img" alt="">
-                    <span>&nbsp;{{i.name}}&nbsp;</span>
-                    <span>{{ i.price }}&nbsp;</span>
-                    <span>{{ i.price }}&nbsp;</span>
-                    <el-icon><Bottom /></el-icon>
+            <li v-for="i in browseList" :key="i.name">
+                <a href="javascript:;">
+                    <span style="color: #89939e;">&nbsp;{{i.name}}&nbsp;</span>
+                    <span>￥{{ i.price }}&nbsp;</span>
+                    <span :style="{color: i.increaseRate > 0 ? '#f23f58' : '#00b98c'}">{{ i.increaseRate }}%&nbsp;
+                        <el-icon v-if="i.increaseRate < 0"><Bottom /></el-icon>
+                        <el-icon v-else><Top /></el-icon>
+                    </span>
                 </a>
             </li>
       </ul>
@@ -103,11 +52,11 @@ const list =[
         left: 400px;
     }
     to{
-        left: -2000px;
+        left: -3000px;
     }
 }
 .roll-anima {
-    animation: roll-anima 30s linear 0s infinite normal backwards;
+    animation: roll-anima 40s linear 0s infinite normal backwards;
 }
 
 .browsing {
@@ -129,18 +78,20 @@ const list =[
         animation-play-state: paused;
     }
         li {
-            margin: auto 10px;
-
+            margin: auto 16px;
             a {
-                display: block;
+                display: flex;
                 height: 16px;
-                width: 200px;
                 line-height: 16px;
-                img {
-                display: inline-block;
-                width: 16px;
-                height: 16px;
-                vertical-align: top;
+                white-space: nowrap;
+                span {
+                    font-size: 12px;
+                    color: #24292E;
+                    font-weight: 600;
+                    .el-icon {
+                        font-size: 14px;
+                        vertical-align: middle;
+                    }
                 }
             }
         }

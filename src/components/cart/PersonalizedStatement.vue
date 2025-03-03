@@ -1,52 +1,47 @@
 <!-- 个性语句 -->
 
 <script setup lang="ts">
+import { ref, onMounted, watch } from 'vue'
 
+import { getSelfData } from '@/api/total'
 
-const textList = [
-    '机会无限的路，是无限的路创造的机会。你以为梦里的都会实现，连同这沾染着无限机会的路。',
-    '让梦想发光，实现与否已经不重要了，重要的是它已经亮起来了'
-]
+const fullText = ref<string>('')
+const displayedText = ref<string>('')
+const typingSpeed = ref<number>(180) // 稍微增加打字速度以模拟自然停顿
+ 
 
-import { ref, onMounted, watch } from 'vue';
- 
-const fullText = ref<string>('');
-const displayedText = ref<string>('');
-const typingSpeed = ref<number>(180); // 稍微增加打字速度以模拟自然停顿
- 
-// 返回随机整数
-function getRandomInt(min: number, max: number): number {
-    min = Math.ceil(min);  // 通常这里min已经是整数，但保留以增加通用性
-    max = Math.floor(max); // 确保max是整数
-    return Math.floor(Math.random() * (max - min + 1)) + min; // 生成[min, max)之间的随机数
-}
- 
-const randomInt: number = getRandomInt(0, 1)
-fullText.value = textList[randomInt]
+const getSelfObj = async () => {
+  try {
+    const res = await getSelfData()
+    if(res.data.code === '3002') fullText.value = '生命是一团欲望，不能满足便痛苦，满足便无聊，人生就在痛苦与无聊之间摇摆'
+    if(res.data.code === '3000') fullText.value = res.data.data[0]!.selfText
+  } catch (error) {
+    
+  }
+} 
 
 const typeText = () => {
-    
-
   if (displayedText.value.length < fullText.value.length) {
     displayedText.value += fullText.value[displayedText.value.length];
     setTimeout(() => typeText(), typingSpeed.value + Math.floor(Math.random() * 50)); // 增加随机延迟以模拟自然打字
   }
-};
+}
  
 const resetText = () => {
-  displayedText.value = '';
+  displayedText.value = ''
   setTimeout(() => {
     typeText();
-  }, typingSpeed.value * 2);
-};
+  }, typingSpeed.value * 2)
+}
  
 watch(fullText, (newVal) => {
   resetText();
-}, { immediate: true });
+}, { immediate: true })
  
-onMounted(() => {
-  typeText();
-});
+onMounted(async () => {
+  await getSelfObj()
+  typeText()
+})
 
 </script>
 

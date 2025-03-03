@@ -2,49 +2,36 @@
 
 <script setup lang="ts">
 import UniversalHead from '@/components/widgets/UniversalHead.vue'
+import { ref,onMounted } from 'vue'
 
-const activities = [
-  {
-    content: 'HackVC合伙人：2025年加密VC或将增加投资，规模甚至可能超过之前高点',
-    timestamp: '2分钟前',
-  },
-  {
-    content: '币界网最新行情晚报：OP价格达1.884美元/枚，日内涨幅3.52%',
-    timestamp: '6分钟前',
-  },
-  {
-    content: '贝莱德和MicroStrategy比特币持仓总和接近100万枚BTC',
-    timestamp: '6分钟前',
-  },
-  {
-    content: 'Cheems推出TikTokCheeseburger挑战赛',
-    timestamp: '8分钟前',
-  },
-  {
-    content: '链界探索者最新行情报告：TRX波场价格达0.2631美元/枚，日内涨幅3.54%',
-    timestamp: '9分钟前',
-  },
-  {
-    content: '链界探索者最新行情报告：TRX波场价格达0.2623美元/枚，日内涨幅2.02%',
-    timestamp: '15分钟前',
-  },
-  {
-    content: 'FlokiDAO投票通过“为FlokiETP提供流动性”提案',
-    timestamp: '15分钟前',
-  },
-  {
-    content: 'Tether向Bitfinex转账1亿枚USDT',
-    timestamp: '16分钟前',
-  },
-  {
-    content: 'CME美联储观察：美联储明年1月降息25个基点的概率小幅升至10.7%',
-    timestamp: '18分钟前',
-  },
-  {
-    content: '埃塞俄比亚电力公司18%的月度销售额来自比特币挖矿',
-    timestamp: '20分钟前',
-  },
-]
+import { getNewsDate } from '@/api/news'
+import hooks from '@/utils/hooks'
+
+
+const newsSimple = ref<Record<string,any>>()
+
+const getNewsList = async(type:string) => {
+    try {
+        const res = await getNewsDate(type)
+        newsSimple.value = res.data.data.map((item:Record<string,any>,index:number) => {
+          const newItem = { ...item }
+          newItem.timestamp = [
+            '2分钟前','3分钟前','6分钟前','6分钟前','8分钟前',
+            '13分钟前','17分钟前','18分钟前','19分钟前','22分钟前',
+            '28分钟前','29分钟前','29分钟前','30分钟前','31分钟前',
+            '33分钟前','37分钟前','40分钟前','41分钟前','54分钟前',
+          ][index]
+          return newItem
+        })
+
+    } catch (error) {
+        hooks.message('快讯内容获取失败，请等待重试','error')
+    }
+}
+
+onMounted(() => {
+  getNewsList('last')
+})
 </script>
 
 <template>
@@ -52,17 +39,16 @@ const activities = [
   <div class="news">
     <UniversalHead title="最新资讯" />
 
-
     <div class="news-main">
         <el-timeline style="max-width: 600px">
             <el-timeline-item
-                v-for="(activity, index) in activities"
+                v-for="(item, index) in newsSimple"
                 :key="index"
-                :timestamp="activity.timestamp"
+                :timestamp="item.timestamp"
                 hollow
                 type="primary"
             >
-            {{ activity.content }}
+            {{ item.title }}
         </el-timeline-item>
   </el-timeline>
     </div>

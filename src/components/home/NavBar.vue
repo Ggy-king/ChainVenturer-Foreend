@@ -58,22 +58,18 @@ watch(
 // 搜索提示
 interface LinkItem {
   value: string
-  link: string
 }
 
 const links = ref<LinkItem[]>([])
 let timeout: ReturnType<typeof setTimeout>
-
-
 const loadAll = () => {
   return [
-    { value: 'vue', link: 'https://github.com/vuejs/vue' },
-    { value: 'element', link: 'https://github.com/ElemeFE/element' },
-    { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
-    { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
-    { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
-    { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
-    { value: 'babel', link: 'https://github.com/babel/babel' },
+    { value: '政策' },
+    { value: '交易所' },
+    { value: '黄金' },
+    { value: '市场' },
+    { value: '美元汇率动向' },
+    { value: '小高同志' },
   ]
 }
 const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
@@ -102,8 +98,6 @@ onMounted(() => {
 
 // -----------登录/注册
 const loginStore = userFromStore()
-
-
 const handleLogin = () => {
   loginStore.changeLoginVisible(true)
 }
@@ -130,13 +124,13 @@ const handleLoginOut = () => {
       <!-- 导航栏 -->
       <ul class="nav">
         <li><router-link :to="{ name:'total'  }">首页</router-link></li>
-        <li><router-link :to="{ name:'market' }">行情</router-link></li>
         <li><router-link :to="{ name:'topic' }">专题</router-link></li>
+        <li><router-link :to="{ name:'articles' }">文章</router-link></li>
+        <li><router-link :to="{ name:'market' }">行情</router-link></li>
+        <li><router-link :to="{ name:'write' }">创作</router-link></li>
         <li><router-link :to="{ name:'news' }">快讯</router-link></li>
         <li><router-link :to="{ name:'tool' }">工具</router-link></li>
         <li><router-link :to="{ name:'rates'}">汇率</router-link></li>
-        <li><router-link :to="{ name:'articles' }">文章</router-link></li>
-        <li><router-link :to="{ name:'write' }">创作</router-link></li>
         <li><router-link :to="{ name:'navigator' }">导航</router-link></li>
         <li><router-link :to="{ name:'developer' }">开发者</router-link></li>
       </ul>

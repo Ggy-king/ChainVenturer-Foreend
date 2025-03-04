@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { defineProps , withDefaults } from 'vue'
-
-// 接受图片链接
-const props = withDefaults(defineProps<{
-    urlList: string
-}>(),{
-    urlList: ''
-})
+import hobbies1 from '@/assets/images/my/hobbies-1.jpg'
+import hobbies2 from '@/assets/images/my/hobbies-2.jpg'
+import hobbies3 from '@/assets/images/my/hobbies-3.jpg'
+import hobbies4 from '@/assets/images/my/hobbies-4.jpg'
+import hobbies5 from '@/assets/images/my/hobbies-5.png'
+import hobbies6 from '@/assets/images/my/hobbies-6.jpg'
 
 </script>
 
@@ -46,8 +44,8 @@ const props = withDefaults(defineProps<{
                                 </p>
 
                                 <div style="display: flex;">
-                                    <img :src="props.urlList + '/hobbies-1.jpg'" alt="期货盈亏比" style="width: 100%;height: 100%;margin-right: 10px;">
-                                    <img :src="props.urlList + '/hobbies-2.jpg'" alt="期货排名" style="width: 100%;height: 100%;">
+                                    <img :src="hobbies1" alt="期货盈亏比" style="width: 100%;height: 100%;margin-right: 10px;">
+                                    <img :src="hobbies2" alt="期货排名" style="width: 100%;height: 100%;">
                                 </div>
                             </div>
                         </template>
@@ -72,8 +70,8 @@ const props = withDefaults(defineProps<{
                                     </p>
 
                                     <div style="display: flex;">
-                                        <img style="width: 70%;height: 100%;margin-right: 10px;" :src="props.urlList + '/hobbies-3.jpg'" alt="期货奖状" >
-                                        <img style="width: 140%;height: 100%;" :src="props.urlList + '/hobbies-3.jpg'" alt="期货奖状净值">
+                                        <img style="width: 70%;height: 100%;margin-right: 10px;" :src="hobbies3" alt="期货奖状" >
+                                        <img style="width: 140%;height: 100%;" :src="hobbies4" alt="期货奖状净值">
                                     </div>
                                 
                                 </div>
@@ -109,8 +107,8 @@ const props = withDefaults(defineProps<{
                                     </p>
 
                                     <div style="display: flex;">
-                                        <img style="width: 96%;height: 100%;margin-right: 10px;" :src="props.urlList + '/hobbies-5.jpg'" alt="代码展示">
-                                        <img style="width: 100%;height: 100%;" :src="props.urlList + '/hobbies-6.jpg'" alt="程序展示">
+                                        <img style="width: 96%;height: 100%;margin-right: 10px;" :src="hobbies5" alt="代码展示">
+                                        <img style="width: 100%;height: 100%;" :src="hobbies6" alt="程序展示">
                                     </div>
                                 </div>
                             </template>

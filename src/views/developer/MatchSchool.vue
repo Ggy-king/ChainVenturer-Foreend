@@ -1,21 +1,20 @@
 <script setup lang="ts">
-import { defineProps , withDefaults,ref } from 'vue'
+import match1 from '@/assets/images/my/match-1.jpg'
+import match2 from '@/assets/images/my/match-2.jpg'
+import match3 from '@/assets/images/my/match-3.png'
+import match4 from '@/assets/images/my/match-4.png'
+import match5 from '@/assets/images/my/match-5.png'
+import match6 from '@/assets/images/my/match-6.png'
 
-// 接受图片链接
-const props = withDefaults(defineProps<{
-    urlList: string
-}>(),{
-    urlList: ''
-})
 
-const urlList = ref<string[]>([
-    props.urlList + '/match-1.jpg',
-    props.urlList + '/match-2.jpg',
-    props.urlList + '/match-3.png',
-    props.urlList + '/match-4.png',
-    props.urlList + '/match-5.png',
-    props.urlList + '/match-6.png',
-])
+const urlList = [
+    match1,
+    match2,
+    match3,
+    match4,
+    match5,
+    match6
+]
 
 
 

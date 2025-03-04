@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { defineProps , withDefaults } from 'vue'
 
-// 接受图片链接
-const props = withDefaults(defineProps<{
-    urlList: string
-}>(),{
-    urlList: ''
-})
+import project1 from '@/assets/images/my/project-1.png'
+import project2 from '@/assets/images/my/project-2.png'
+import project3 from '@/assets/images/my/project-3.png'
+import project4 from '@/assets/images/my/project-4.png'
+import project5 from '@/assets/images/my/project-5.png'
 
 </script>
 
@@ -20,7 +19,7 @@ const props = withDefaults(defineProps<{
             </div>
             
             <div class="project-detail" style="height: 280px;">
-                <img :src="props.urlList + '/project-1.png'" alt="项目一" style="padding-right: 40px;">
+                <img :src="project1" alt="项目一" style="padding-right: 40px;">
                 <div class="project-detail-characters">
                     <h3>链界探索者-基于数字货币的智域探索平台</h3>
                     <span>这个当然是本网站啦，使用vue3、vue-router、pinia、vite、sass、typescript、eslint、prettier、echarts、nodejs、express、mongodb、mongoose、阿里云等技术搭建，着重以最完善的网站开发。</span>
@@ -32,12 +31,12 @@ const props = withDefaults(defineProps<{
                     <h3>环球新闻管理后台</h3>
                     <span>实现较为完善的后台权限搭建，精细的权限控制、支持角色分配和权限继承、身份验证机强化、制菜单结构清晰、高效的后台处理逻辑。采用react、redux、Auth0、antd、json-server及Apifox使用。</span>
                 </div>
-                <img :src="props.urlList + '/project-2.png'" alt="项目二">
+                <img :src="project2" alt="项目二">
             </div>
 
             <div class="project-detail" style="height: 350px;">
-                <img :src="props.urlList + '/project-3.png'" alt="项目三" style="padding-right: 10px;">
-                <img :src="props.urlList + '/project-4.png'" alt="项目四" style="padding-right: 80px;">
+                <img :src="project3" alt="项目三" style="padding-right: 10px;">
+                <img :src="project4" alt="项目四" style="padding-right: 80px;">
                 <div class="project-detail-characters">
                     <h3>移动商场app 及 教育微信小程序</h3>
                     <span>前者移动端项目主要练习vue2、vuex、两套布局实现(重写两套代码)：rem布局及vmin布局、webpack优化、跨平台兼容。</span>
@@ -50,7 +49,7 @@ const props = withDefaults(defineProps<{
                     <h3>其他想法</h3>
                     <span>就不展示更多项目了，未来对Uni-app、Docker、Flutter、Web3、区块链技术、Svelte、Solid等更多技术都会有所涉猎与展望。</span>
                 </div>
-                <img :src="props.urlList + '/project-5.png'" alt="其他" style="padding-left: 100px;">
+                <img :src="project5" alt="其他" style="padding-left: 100px;">
             </div>
 
 

@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import { defineProps , withDefaults } from 'vue'
+import project6 from '@/assets/images/my/project-6.png'
 
-// 接受图片链接
-const props = withDefaults(defineProps<{
-    urlList: string
-}>(),{
-    urlList: ''
-})
 
 </script>
 
@@ -21,7 +15,7 @@ const props = withDefaults(defineProps<{
             </div>
             <!-- <div> -->
                 <el-card>
-                    <img :src="props.urlList + '/project-6.png'" alt="技术栈">
+                    <img :src="project6" alt="技术栈">
                 </el-card>
             <!-- </div> -->
         </div>

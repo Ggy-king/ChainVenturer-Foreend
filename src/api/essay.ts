@@ -10,11 +10,19 @@ export const getEssayOne = (id:string) => {
 
 // 收藏某文章
 export const putCollectEssay = (id:string) => {
-    return request.put('/users/collect',{
+    return request.patch('/users/collect',{
         id
     })
 }
 // 渲染收藏的文章
 export const getCollectEssay = () => {
     return request.get('/users/collect')
+}
+
+// 评论某文章
+export const patchMarkData = (id:string,mark:string) => {
+    return request.patch('write/mark',{
+        id,
+        mark
+    })
 }

@@ -6,3 +6,6 @@ export const getContractDate = () => {
     return request.get('/market')
 }
 
+export const getContractSimple = () => {
+    return request.get('/market/simple')
+}

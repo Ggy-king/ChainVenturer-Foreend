@@ -1,7 +1,11 @@
 // 封装total页面需要用到的axios请求
 import request from '@/utils/request.ts'
 
-// 获取行情简版数据
+// 获取个性文字
+export const getSelfData = () => {
+    return request.get('/total/self')
+}
+
 
 
 // 获取轮播图数据
@@ -18,6 +22,10 @@ export const getVariousEssay = (type:string,value:string) => {
     })
 }
 
+// 获取topic随机一条数据
+export const getTopicData = () => {
+    return request.get('/total/topic')
+}
 
 
 

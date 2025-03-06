@@ -99,20 +99,22 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {    // 控制滚动条是否保存位置
+    
     if (['articles'].includes(to.name as string)) {
-      if(savedPosition) {
-
-        return savedPosition;
+      if(from.name === 'essay') {
+        if(savedPosition) return savedPosition
+      } else {
+        return { top: 0 }
       }
+      
     } else {
-      return { top: 0 }; // 返回页面顶部
+      return { top: 0 }
     }
   }
 })
 
 const protectedViews:string[] = ['/person']
 router.beforeEach((to,from,next) => {
-
   if(protectedViews.includes(to.path)) {
     const userStore = userFromStore()
 

@@ -21,14 +21,29 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-
-    
   ],
-  // base: '/',
+  server: {
+    headers: {
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+      'Surrogate-Control': 'no-store'
+    }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          return assetInfo.name?.endsWith('.webp') 
+            ? 'assets/images/[name]-[hash][extname]'
+            : 'assets/[name]-[hash][extname]'
+        }
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
-  
 })

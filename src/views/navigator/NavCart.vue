@@ -1,93 +1,114 @@
 <!-- 导航卡片 -->
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 
-const activeName = ref('first')
+// 接受数据
+const props = withDefaults(defineProps<{
+    title: string
+    navList: Record<string,any>
+    db: number
+    firstKind: string
+    secondKind: string
+    thirdKind: string
+}>(),{})
 
-const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
+const list = ref<Record<string,any>>([])
+
+
+// 切换标签
+const kindList = ref<Record<string,any>>([])
+const handleClickTab = (tab: TabsPaneContext, event: Event) => {
+    kindList.value = list.value.filter((item:Record<string,any>) => {
+        if(item.kind === tab.paneName) return item
+    })
 }
+
+onMounted(() => {
+    if(props.navList) {
+        props.navList.map((item:Record<string,any>) => {
+            if(item.db === props.db) list.value.push(item)
+        })
+    }
+})
+
+
 </script>
 
 <template>
     <!-- 头部标题 -->
-    <header><el-icon><Medal /></el-icon>&nbsp;热门</header>
+    <header><el-icon><Medal /></el-icon>&nbsp;{{ props.title }}</header>
 
     <el-tabs
-        v-model="activeName"
         type="card"
-        @tab-click="handleClick"
+        @tab-click="handleClickTab"
     >
-        <el-tab-pane label="全部" name="first">
-            <el-card shadow="hover">
-                <div class="nav">
-                    <img src="../../assets/images/navigator-icon.webp" alt="">
+        <el-tab-pane label="全部">
+
+            <el-card v-for="i in list" shadow="hover">
+                <a :href="i.url" target="_blank" class="nav">
+                    <div 
+                        class="nav-img" 
+                        :style="{
+                            backgroundPosition: `${i.imgOrder * -48}px ${i.db * -48}px`
+                        }"
+                    ></div>
                     <div class="nav-main">
-                        <span>DappRadar</span>
-                        <span class="ellipsis">去中心化应用商店</span>
+                        <div>{{ i.title }}</div>
+                        <div class="ellipsis">{{ i.info }}</div>
                     </div>
-                </div>
-            </el-card>
-            <el-card shadow="hover">
-                <div class="nav">
-                    <img src="../../assets/images/navigator-icon.webp" alt="">
-                    <div class="nav-main">
-                        <span>DappRadar</span>
-                        <span class="ellipsis">去中心化应用商店</span>
-                    </div>
-                </div>
-            </el-card>
-            <el-card shadow="hover">
-                <div class="nav">
-                    <img src="../../assets/images/navigator-icon.webp" alt="">
-                    <div class="nav-main">
-                        <span>DappRadar</span>
-                        <span class="ellipsis">去中心化应用商店</span>
-                    </div>
-                </div>
-            </el-card>
-            <el-card shadow="hover">
-                <div class="nav">
-                    <img src="../../assets/images/navigator-icon.webp" alt="">
-                    <div class="nav-main">
-                        <span>DappRadar</span>
-                        <span class="ellipsis">去中心化应用商店</span>
-                    </div>
-                </div>
-            </el-card>
-            <el-card shadow="hover">
-                <div class="nav">
-                    <img src="../../assets/images/navigator-icon.webp" alt="">
-                    <div class="nav-main">
-                        <span>DappRadar</span>
-                        <span class="ellipsis">去中心化应用商店</span>
-                    </div>
-                </div>
-            </el-card>
-            <el-card shadow="hover">
-                <div class="nav">
-                    <img src="../../assets/images/navigator-icon.webp" alt="">
-                    <div class="nav-main">
-                        <span>DappRadar</span>
-                        <span class="ellipsis">去中心化应用商店</span>
-                    </div>
-                </div>
-            </el-card>
-            <el-card shadow="hover">
-                <div class="nav">
-                    <img src="../../assets/images/navigator-icon.webp" alt="">
-                    <div class="nav-main">
-                        <span>DappRadar</span>
-                        <span class="ellipsis">去中心化应用商店</span>
-                    </div>
-                </div>
+                </a>
             </el-card>
             
         </el-tab-pane>
-        <el-tab-pane label="数据" name="second">Config</el-tab-pane>
-        <el-tab-pane label="工具" name="third">Role</el-tab-pane>
-        <el-tab-pane label="BTC" name="fourth">Task</el-tab-pane>
+        <el-tab-pane :label="props.firstKind">
+            <el-card v-for="i in kindList" shadow="hover">
+                <a :href="i.url" target="_blank" class="nav">
+                    <div 
+                        class="nav-img" 
+                        :style="{
+                            backgroundPosition: `${i.imgOrder * -48}px ${i.db * -48}px`
+                        }"
+                    ></div>
+                    <div class="nav-main">
+                        <div>{{ i.title }}</div>
+                        <div class="ellipsis">{{ i.info }}</div>
+                    </div>
+                </a>
+            </el-card>
+        </el-tab-pane>
+        <el-tab-pane :label="props.secondKind">
+            <el-card v-for="i in kindList" shadow="hover">
+                <a :href="i.url" target="_blank" class="nav">
+                    <div 
+                        class="nav-img" 
+                        :style="{
+                            backgroundPosition: `${i.imgOrder * -48}px ${i.db * -48}px`
+                        }"
+                    ></div>
+                    <div class="nav-main">
+                        <div>{{ i.title }}</div>
+                        <div class="ellipsis">{{ i.info }}</div>
+                    </div>
+                </a>
+            </el-card>
+        </el-tab-pane>
+        <el-tab-pane :label="props.thirdKind">
+            <el-card v-for="i in kindList" shadow="hover">
+                <a :href="i.url" target="_blank" class="nav">
+                    <div 
+                        class="nav-img" 
+                        :style="{
+                            backgroundPosition: `${i.imgOrder * -48}px ${i.db * -48}px`
+                        }"
+                    ></div>
+                    <div class="nav-main">
+                        <div>{{ i.title }}</div>
+                        <div class="ellipsis">{{ i.info }}</div>
+                    </div>
+                </a>
+            </el-card>
+        </el-tab-pane>
     </el-tabs>
 </template>
 
@@ -105,7 +126,7 @@ header {
 }
 
 .el-tabs {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     :deep(.el-tabs__header) {
         border: none;
         .el-tabs__nav {
@@ -144,6 +165,7 @@ header {
             margin-bottom: 20px;
             border-radius: 14px;
             :deep(.el-card__body) {
+                padding: 14px 10px;
                 height: 100%;
                 width: 100%;
             }
@@ -151,22 +173,31 @@ header {
                 width: 100%;
                 height: 100%;
                 display: flex;
-                justify-content: center;
                 align-items: center;
-                margin: auto;
-                img {
+                cursor: pointer;
+                &-img {
+                    flex-shrink: 0;  // 0为空间不足时不收缩 默认为1表示收缩
                     width: 40px;
                     height: 40px;
-                    margin-right: 4px;
+                    border-radius: 20px;
+                    background: url('@/assets/images/navigator-img10.png');
+                    background-size: 616px 328px;
+                    background-repeat: no-repeat;
+                    background-position: 0px 0px;
                 }
                 .nav-main {
-                    span:first-child {
+                    height: 40px;
+                    margin-left: 10px;
+                    overflow: hidden;
+
+                    div:first-child {
                         font-size: 14px;
                         font-weight: 600;
                         color: #000;
                     }
-                    span:last-child {
+                    div:last-child {
                         font-size: 12px;
+                        color: #677788;
                     }
                 }
             }

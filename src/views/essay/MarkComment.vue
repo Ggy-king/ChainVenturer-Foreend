@@ -4,9 +4,37 @@
 import UniversalHead from '@/components/widgets/UniversalHead.vue'
 import IconGiveUp from '@/components/icons/IconGiveUp.vue'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+import hooks from '@/utils/hooks'
+import { userFromStore } from '@/stores'
+import { patchMarkData } from '@/api/essay'
+
 const input = ref('')
+const route = useRoute()
+const loginStore = userFromStore()
 
-
+const handlePublishMark = async () => {
+    const realText = input.value.trim()
+    if(realText.length === 0) return hooks.message('评论内容不能为空','warning')
+    
+    try {
+        const res = await patchMarkData(route.params.id as string,realText)
+        if(res.data.code === '2007') {
+            hooks.message('您还没有登录呢，请您登录一下吧','warning')
+            loginStore.changeLoginVisible(true)
+        } else if(res.data.code === '3000') {
+            hooks.message('评论成功！请刷新看看','success')
+        } else if(res.data.code === '3004') {
+            hooks.message('评论失败，请检查是否有违禁词，格式是否错误，或者是服务端问题','error')
+        } else {
+            hooks.message('服务端错误！','error')
+        }
+    } catch (error) {
+        hooks.message('系统错误','error')
+    }
+    hooks.message('发布评论功能暂且关闭，敬请谅解','warning')
+}
 
 </script>
 
@@ -18,10 +46,11 @@ const input = ref('')
         <div class="mt-4">
             <el-input
             v-model="input"
+            @keyup.enter="handlePublishMark"
             placeholder="请尽情发表您的评论吧"
             >
             <template #append>
-                <el-button>发表</el-button>
+                <el-button @click="handlePublishMark">发表</el-button>
             </template>
             </el-input>
         </div>

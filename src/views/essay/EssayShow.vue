@@ -5,6 +5,8 @@ import NewsCart from '@/components/cart/NewsCart.vue'
 import MarkComment from './MarkComment.vue'
 import RelatedReading from './RelatedReading.vue'
 
+import noData from '@/assets/images/no-data.png'
+
 import { onMounted,ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -17,6 +19,7 @@ const route = useRoute()
 
 const essayId = route.params.id
 const essayList = ref<Record<string,any>>({})
+const essayShow = ref<boolean>(false)
 const handleToEssay = async (id:string) => {
     let res
     route.query.topic ?
@@ -24,6 +27,7 @@ const handleToEssay = async (id:string) => {
     
     essayList.value = res.data.data[0]
     essayList.value.currency = essayList.value.currency.join(" ")
+    essayShow.value = true
 }
 onMounted(() => {
     handleToEssay(essayId as string)
@@ -31,7 +35,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="essay">
+    <div class="essay" v-if="essayShow">
         <header>
             <div class="title">{{ essayList.title }}</div>
             <div class="topic">
@@ -66,6 +70,14 @@ onMounted(() => {
             <NewsCart />
         </div>
     </div>
+    
+    <el-empty 
+      v-else 
+      style="--el-empty-padding: 40px 0 40px;"
+      :image-size="600" 
+      :image="noData"
+      description="数据跑丢了，请等待一会或刷新一下吧！"
+    />
 </template>
 
 

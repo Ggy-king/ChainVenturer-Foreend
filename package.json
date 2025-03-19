@@ -1,5 +1,5 @@
 {
-  "name": "smartdomain",
+  "name": "chain-venturer-fore",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -13,10 +13,12 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-vue": "^7.3.0",
     "@element-plus/icons-vue": "^2.3.1",
-    "@vueup/vue-quill": "^1.2.0",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^1.7.9",
+    "compressorjs": "^1.2.1",
+    "crypto-js": "^4.2.0",
     "echarts": "^5.6.0",
     "element-plus": "^2.9.1",
     "pinia": "^2.2.6",

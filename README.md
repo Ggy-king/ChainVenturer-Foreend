@@ -1,14 +1,14 @@
-# ChainVenturer
+# SmartDomain 未来想改名为 ChainVenturer
 ___
 # 链界探索者 -- 基于数字货币的智域探索平台
 
 一直想一个属于自己的个人网站，想了很久打算了很久一直没有实现，而时至今日，终于是腾出时间打造一个只属于自己的个人网站，而不是一直为别人的项目奔波。
 
-做自己的网站自然要用自己喜欢的技术喽，本项目打算采用{1、}$🔥<mark>__vue3__+__vue-router__+__pinia__</mark>实现前端框架、路由及状态管理；使用{2、}$📦<mark> __npm/pnpm__+__vite__</mark>实现前端构建与管理；使用{3、}$📝<mark>__eslint__+__prettier__</mark>实现前端代码质量检查；使用{4、}$🌈<mark>__Element__</mark>组件库辅助搭建；使用{5、}$🛡️<mark>__sass__+__typescript__</mark>实现样式逻辑完善；
+做自己的网站自然要用自己喜欢的技术喽，本项目打算采用$\color{blue}{1、}$🔥<mark>__vue3__+__vue-router__+__pinia__</mark>实现前端框架、路由及状态管理；使用$\color{blue}{2、}$📦<mark> __npm/pnpm__+__vite__</mark>实现前端构建与管理；使用$\color{blue}{3、}$📝<mark>__eslint__+__prettier__</mark>实现前端代码质量检查；使用$\color{blue}{4、}$🌈<mark>__Element__</mark>组件库辅助搭建；使用$\color{blue}{5、}$🛡️<mark>__sass__+__typescript__</mark>实现样式逻辑完善；
 
 
 
-[<u>注意！点击此处访问我的小小网站！(如果您不想下载使用该项目的话，我已经将它上线可直接访问)</u>](https://ggyking.top "链界探索者主页")
+[<u>注意！点击此处访问我的小小网站！</u>](https://ggyking.top "链界探索者主页，当然现在还没有做完不用点开看了，上面是之前的测试项目")
 
 #### 网站实现技术简介
 **ChainVenturer(链界探索者)项目技术概览**
@@ -61,7 +61,7 @@ ___
 
 
 
-# 这个自述文件还没有写完，因为想想把整个项目做完，还有后端代码没有上传，等一切都调试好了再来继续写自述
+
 
 This template should help get you started developing with Vue 3 in Vite.
 ## Type Support for `.vue` Imports in TS

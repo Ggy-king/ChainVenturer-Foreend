@@ -131,8 +131,8 @@ const handleLoginOut = () => {
         <li><router-link :to="{ name:'news' }">快讯</router-link></li>
         <li><router-link :to="{ name:'tool' }">工具</router-link></li>
         <li><router-link :to="{ name:'rates'}">汇率</router-link></li>
+        <li class="nav-developer"><router-link :to="{ name:'developer' }">开发者</router-link></li>
         <li><router-link :to="{ name:'navigator' }">导航</router-link></li>
-        <li><router-link :to="{ name:'developer' }">开发者</router-link></li>
       </ul>
 
       <div class="component">
@@ -231,6 +231,7 @@ const handleLoginOut = () => {
       font-weight: 600;
       li {
         padding: 0 10px;
+        
         &:hover {
           color: #ae782c;
         }
@@ -238,6 +239,26 @@ const handleLoginOut = () => {
           color: #FFD700;
         }
       }
+      &-developer a {
+          background-image: linear-gradient(
+            135deg, 
+          #00f2fe 25%,  /* 亮青色 */
+          #6c5ce7e7 50%,  /* 紫罗兰 */
+          #ff6b6b 75%,  /* 珊瑚色 */
+          #ffd700 100%,
+ /* 金色 */
+          );
+          background-size: 300% auto; /* 扩大背景尺寸实现动画位移 */
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent; /* 隐藏原文字颜色 */
+          font-weight: bold; /* 加粗更显眼 */
+          /* 添加动画 */
+          animation: gradientFlow 2.5s linear infinite;
+          transition: filter 0.3s;  /* 平滑过渡 */
+          animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); /* 加速曲线 */
+          text-shadow: 0 0 10px rgba(0, 242, 254, 0.2); /* 动态残影 */
+        }
     }
     
     .component {
@@ -303,5 +324,19 @@ const handleLoginOut = () => {
 
 }
 
+
+@keyframes gradientFlow {
+
+  0% {
+    background-position: 150% 150%; /* 移动到右下外 */
+    transform: translate(10%, 10%);
+  }
+  100% {
+    
+    background-position: -150% -150%; /* 从左上外开始 */
+    transform: translate(-10%, -10%);
+  }
+
+}
 
 </style>

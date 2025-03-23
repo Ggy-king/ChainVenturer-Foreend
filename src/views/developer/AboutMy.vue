@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import IconGithub from '@/components/icons/IconGithub.vue'
+import { ref,onMounted } from 'vue'
 
 import img from '@/assets/images/my/img.png'
-import { useRouter } from 'vue-router';
-import hooks from '@/utils/hooks';
+import { useRouter } from 'vue-router'
+import hooks from '@/utils/hooks'
 
 // 跳转
 const router = useRouter()
@@ -16,6 +17,30 @@ const handleToHome = () => {
 const handlePathTo = ( url:string ) :void => {
     window.open(url,'_blank')
 }
+
+
+// 图片相关
+const loading = ref<boolean>(true)
+const imageSources = [img]
+// 通用图片加载器
+const loadImage = (src:string) => new Promise((resolve, reject) => {
+  const img = new Image()
+  img.src = src
+  img.onload = () => resolve(src)
+})
+const imageIsShow = async () => {
+    try {
+        await Promise.all(imageSources.map(src => loadImage(src)))
+        loading.value = false
+    } catch (error) {
+        loading.value = true
+    }
+}
+
+onMounted(() => {
+    imageIsShow()
+})
+
 
 </script>
 
@@ -43,8 +68,20 @@ const handlePathTo = ( url:string ) :void => {
                 </el-card>
             </div>
         </div>
-        <el-card class="about-image" >
-            <img :src="img" alt="我的学习记录及项目集成">
+        <el-card class="about-image">
+            <el-skeleton 
+                style="width: 100%; height: 480px"
+                :loading="loading"
+                animated
+                :throttle="500"
+            >
+                <template #template>
+                    <el-skeleton-item variant="image"  style="height: 100%" />
+                </template>
+                <template #default>
+                    <img :src="img" alt="我的学习记录及项目集成">
+                </template>
+            </el-skeleton>
         </el-card>
     </div>
 </template>
@@ -133,10 +170,6 @@ const handlePathTo = ( url:string ) :void => {
     height: 500px;
     :deep(.el-card__body) {
         padding: 10px;
-        img {
-        width: 100%;
-        height: 100%;
-    }
     }
   }
 

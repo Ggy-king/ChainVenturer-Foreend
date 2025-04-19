@@ -4,7 +4,7 @@ ___
 
 一直想一个属于自己的个人网站，想了很久打算了很久一直没有实现，而时至今日，终于是腾出时间打造一个只属于自己的个人网站，而不是一直为别人的项目奔波。
 
-做自己的网站自然要用自己喜欢的技术喽，本项目打算采用$\color{blue}{1、}$🔥<mark>__vue3__+__vue-router__+__pinia__</mark>实现前端框架、路由及状态管理；使用$\color{blue}{2、}$📦<mark> __npm/pnpm__+__vite__</mark>实现前端构建与管理；使用$\color{blue}{3、}$📝<mark>__eslint__+__prettier__</mark>实现前端代码质量检查；使用$\color{blue}{4、}$🌈<mark>__Element__</mark>组件库辅助搭建；使用$\color{blue}{5、}$🛡️<mark>__sass__+__typescript__</mark>实现样式逻辑完善；
+做自己的网站自然要用自己喜欢的技术喽，本项目打算采用$\color{blue}{1、}$🔥<mark>__vue3__+__vue-router__+__pinia__</mark>实现前端框架、路由及状态管理；使用$\color{blue}{2、}$📦<mark> __npm/pnpm__+__vite__</mark>实现前端构建与管理；使用$\color{blue}{3、}$📝<mark>__eslint__+__prettier__</mark>实现前端代码质量检查；使用$\color{blue}{4、}$🌈<mark>__Element__</mark>组件库辅助搭建；使用$\color{blue}{5、}$🛡️<mark>__sass__+__typescript__</mark>实现样式逻辑完善；使用ubuntu系统通过PM2+Nginx上线
 
 
 

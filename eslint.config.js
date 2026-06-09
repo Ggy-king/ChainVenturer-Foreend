@@ -21,7 +21,7 @@ export default [
           semi: false, // 无分号
           printWidth: 80, //每行宽度最多80字符
           trailingComma: 'none', // 不加对象/数组最后的逗号
-          endOfline: 'auto' //换行符号不限制
+          endOfLine: 'auto' //换行符号不限制
         }
       ],
       // ESLint规范

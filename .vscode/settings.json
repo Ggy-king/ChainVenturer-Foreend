@@ -1,0 +1,40 @@
+{
+  // 保存时自动格式化代码
+  "editor.formatOnSave": true,
+  // 默认格式化工具用 Prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 保存时自动修复 ESLint 能修的问题（比如多余空格、未使用变量等）
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  // Vue 文件用 Prettier 格式化
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // TypeScript 文件用 Prettier 格式化
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // JavaScript 文件用 Prettier 格式化
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // SCSS 文件用 Prettier 格式化
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // CSS 文件用 Prettier 格式化
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // JSON 文件用 VS Code 自带的格式化器（比 Prettier 更稳定，不会乱动字段顺序）
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // JSON with Comments 文件同样用 VS Code 自带格式化器
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // 使用项目本地安装的 TypeScript 版本
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
